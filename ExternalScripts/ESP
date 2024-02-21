@@ -1,0 +1,60 @@
+local ESPEnabled = false
+local lplr = game.Players.LocalPlayer
+local debounce = false
+
+local function ShowESP()
+	for _, player in ipairs(game.Players:GetPlayers()) do
+		local esp = Instance.new("Highlight")
+		esp.Parent = player.Character
+		esp.Enabled = true
+	end
+end
+
+local function DisableESP()
+	for _, player in ipairs(game.Players:GetPlayers()) do
+		for _, v in ipairs(player.Character:GetChildren()) do
+			if v:IsA("Highlight") then
+				v:Destroy()
+			end
+		end
+	end
+end
+
+game.UserInputService.InputBegan:Connect(function(kc)
+	if kc.KeyCode == Enum.KeyCode.E and not debounce then
+		debounce = true
+
+		if ESPEnabled then
+			DisableESP()
+			ESPEnabled = false
+		else
+			ShowESP()
+			ESPEnabled = true
+		end
+
+		wait(1)  -- Adjust the debounce duration as needed
+		debounce = false
+	end
+end)
+
+
+--[[
+  /
+ /     )
+/     /         |
+///     (O) (O)|
+  |           ------, 
+  |         / 
+  | (      /   \  \
+  |        /   \
+  |        \      / / 
+|_/
+./\
+ /     .       | \  |
+ \    /\   .  |  \ |\
+ |`\       /\ |   | \
+Jimmy's esp was founded by Jimmy / Tropxz me ofc (imanewma__n on discord if u need help) for my dear friend headlined if u use this and u remove
+this line of text u get sued 💰💸😔 
+
+THIS IS SERIOUS I HAVE NO LAWYERS  😔😔😔
+]]
