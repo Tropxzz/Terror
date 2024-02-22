@@ -1,3 +1,5 @@
+!
+
 # Project Title
 Terror
 # Introduction
@@ -8,9 +10,10 @@ This heavy chunk of code makes the code "Terror" Terror is a fun and useful scri
 # Getting Started
 run it and play around ig
 # Contributing
+> CANVA HELPED MAKE THE LOGO NOT SUNO LLL
+some of the code - suno/headlined
 
 # License
-[Specify the license for your project. This can include details on how others can use and distribute your project.]
+MIT
 # Contact
-[Provide contact information in case users have questions or need to reach out to you for any reason.]
-Feel free to customize this template to fit your specific project needs. Good luck with your project!
+Email: unknwonw
