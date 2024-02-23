@@ -1,3 +1,5 @@
+-- the moment when i realized this needs to be a module with no toggle 😭
+
 local ESPEnabled = false
 local lplr = game.Players.LocalPlayer
 local debounce = false
