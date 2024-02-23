@@ -2,7 +2,9 @@
 	local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
 	local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
 	local ESPModule = loadstring(game:HttpGet("https://raw.githubusercontent.com/Tropxzz/Terror/main/Modules/ESPModule.lua", true))()
-	-- varibles
+	local AimbotModule = loadstring(game:HttpGet("https://raw.githubusercontent.com/Tropxzz/Terror/main/Modules/Aimbot.lua", true))()
+
+-- varibles
 	local PlaceId = game.PlaceId
 	local JobId = game.JobId
 	local player = game.Players.LocalPlayer
@@ -48,18 +50,27 @@ Main:AddButton({
 -- Combat
 
 
-local Toggle = Combat:AddToggle("ESP", {Title = "ESP", Default = false })
+local ESP = Combat:AddToggle("ESP", {Title = "ESP", Default = false })
 
-Toggle:OnChanged(function()
-	if Toggle.Value == false  then
+ESP:OnChanged(function()
+	if ESP.Value == false  then
 		ESPModule.DisableESP()
-	elseif Toggle.Value == true  then
+	elseif ESP.Value == true  then
 		ESPModule.ShowESP()
 	end
 end)
--- lesson learnt never add a debounce to a toggle in a ui library lmfao
+-- lesson learnt never add a debounce to a toggle in a ui library lmfao (fyi it broke)
+-- Alr hmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm lets do 👑 Aimbot 👑
+-- yo bros my old module things got me covered :fire:
+-- ima just upload it to my github and were done basically
 
-
+Combat:AddButton({
+	Title = "Aimbot",
+	Description = "Automatically aims when u hold RB.",
+	Callback = function()
+		AimbotModule.StartAimbot()
+	end
+})
 
 	-- interface settings
 	InterfaceManager:SetLibrary(Fluent)
