@@ -1,7 +1,7 @@
 	-- ui varibles
 	local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
 	local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
-
+	local ESPModule = loadstring(game:HttpGet("https://raw.githubusercontent.com/Tropxzz/Terror/main/Modules/ESPModule.lua", true))()
 	-- varibles
 	local PlaceId = game.PlaceId
 	local JobId = game.JobId
@@ -35,7 +35,29 @@
 		Callback = function()
 			game["Teleport Service"]:TeleportToPlaceInstance(PlaceId, JobId, player)
 		end
-	})
+})
+
+Main:AddButton({
+	Title = "Serverhop",
+	Description = "Join another server easily.",
+	Callback = function()
+		game:GetService("TeleportService"):TeleportToPlaceInstance(PlaceId, player)
+	end
+})
+
+-- Combat
+
+
+local Toggle = Combat:AddToggle("ESP", {Title = "ESP", Default = false })
+
+Toggle:OnChanged(function()
+	if Toggle.Value == false  then
+		ESPModule.DisableESP()
+	elseif Toggle.Value == true  then
+		ESPModule.ShowESP()
+	end
+end)
+-- lesson learnt never add a debounce to a toggle in a ui library lmfao
 
 
 
