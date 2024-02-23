@@ -61,7 +61,7 @@ Plr:AddSlider("Ws", {
 	Callback = function(Value)
 		player.Character.Humanoid.WalkSpeed = Value
 	end
-})
+});
 
 Plr:AddSlider("JP", {
 	Title = "JUMPPOWER",
@@ -73,7 +73,7 @@ Plr:AddSlider("JP", {
 	Callback = function(Value)
 		player.Character.Humanoid.JumpPower = Value
 	end
-})
+});
 
 Plr:AddSlider("HipHeight", {
 	Title = "HipHeight",
@@ -85,7 +85,7 @@ Plr:AddSlider("HipHeight", {
 	Callback = function(Value)
 		player.Character.Humanoid.HipHeight = Value
 	end
-})
+});
 
 
 -- Combat
