@@ -16,7 +16,7 @@
 		TabWidth = 160,
 		Size = UDim2.fromOffset(580, 460),
 		Acrylic = true, -- The blur may be detectable, setting this to false disables blur entirely
-		Theme = "Light",
+		Theme = "Dark",
 		MinimizeKey = Enum.KeyCode.LeftControl -- Used when theres no MinimizeKeybind
 	})
 
@@ -85,6 +85,39 @@ Toggle:OnChanged(function()
 	else
 		_G.TracersVisible = true
 	end
+end)
+
+
+local Noclip = Combat:AddToggle("Noclip", {Title = "Noclip", Default = false })
+
+Noclip:OnChanged(function()
+	for i,v in ipairs(player.Character:GetDescendants()) do
+		if v:IsA("MeshPart") or v:IsA("Part") then
+			if Noclip.Value == false  then
+              v.CanCollide = true
+			elseif Noclip.Value == true  then
+				v.CanCollide = false
+			end
+		end
+	end
+end)
+local t =  {}
+for i,v in ipairs(game.Players:GetChildren()) do
+	if v:IsA("Player") then
+		table.insert(t, v)
+
+	end
+end
+
+local Dropdown = Combat:AddDropdown("Dropdown", {
+	Title = "Dropdown",
+	Values = {t},
+	Multi = false,
+	Default = 1,
+})
+
+Dropdown:OnChanged(function(Value)
+	print("Dropdown changed:", Value)
 end)
 
 
