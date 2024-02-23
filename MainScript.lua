@@ -101,22 +101,17 @@ Noclip:OnChanged(function()
 		end
 	end
 end)
-local t =  {}
-for i,v in ipairs(game.Players:GetChildren()) do
-	if v:IsA("Player") then
-	end
-end
 
 local Dropdown = Combat:AddDropdown("Dropdown", {
 	Title = "Dropdown",
 	Values = {},
 	Multi = false,
-	Default = nil
+	Default = game.Players.LocalPlayer.Name
 })
 
 for i,v in ipairs(game.Players:GetChildren()) do
 	if v:IsA("Player") then
-		table.insert(Dropdown.Value, v)
+		table.insert(Dropdown.Value, v.Name)
 	end
 end
 
