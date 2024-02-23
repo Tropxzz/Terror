@@ -106,23 +106,33 @@ local Dropdown = Combat:AddDropdown("Dropdown", {
 	Title = "Dropdown",
 	Values = {},
 	Multi = false,
-	Default = game.Players.LocalPlayer.Name
+	Default = nil
 })
 
-for i,v in ipairs(game.Players:GetChildren()) do
-	if v:IsA("Player") then
-		table.insert(Dropdown.Value, v.Name)
+for _, player in ipairs(game.Players:GetPlayers()) do
+	if player:IsA("Player") then
+		table.insert(Dropdown.Values, player)
 	end
 end
 
-Dropdown:OnChanged(function(Value)
-	for i,v in ipairs(game.Players:GetChildren()) do
-		if v:IsA("Player") then
-			table.insert(Dropdown.Value, v)
+game.Players.PlayerAdded:Connect(function(player)
+	if player:IsA("Player") then
+		table.insert(Dropdown.Values, player)
+	end
+end)
+
+game.Players.PlayerRemoving:Connect(function(player)
+	for i, v in ipairs(Dropdown.Values) do
+		if v == player then
+			table.remove(Dropdown.Values, i)
+			break
 		end
 	end
 end)
 
+Dropdown:OnChanged(function(Value)
+	print("Selected player:", Value)
+end)
 
 	-- interface settings
 	InterfaceManager:SetLibrary(Fluent)
