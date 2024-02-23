@@ -26,7 +26,7 @@
 			Combat = Window:AddTab({ Title = "Combat", Icon = "swords" })
 			Trolling = Window:AddTab({ Title = "Trolling", Icon = "venetian-mask" })
 			Commands = Window:AddTab({ Title = "Commands", Icon = "terminal-square" })
-			RPS = Window:AddTab({ Title = "RecreatingPopularscripts", Icon =  --[[ joking ofc ]]"biohazard" })
+			RPS = Window:AddTab({ Title = "RSP", Icon =  --[[ joking ofc ]]"cake-slice" })
 	      -- the fact i might've called it skid haven
 			Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
 
