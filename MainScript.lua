@@ -1,4 +1,5 @@
-	-- ui varibles
+	
+-- ui varibles
 	local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
 	local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
 	local ESPModule = loadstring(game:HttpGet("https://raw.githubusercontent.com/Tropxzz/Terror/main/Modules/ESPModule.lua", true))()
@@ -101,30 +102,6 @@ Noclip:OnChanged(function()
 		end
 	end
 end)
-
-local Dropdown = Combat:AddDropdown("Dropdown", {
-    Title = "Dropdown",
-    Values = {}, 
-    Multi = false,
-    Default = nil
-})
-
--- Populate dropdown values initially
-for _, playerr in ipairs(game.Players:GetPlayers()) do
-    if player:IsA("Player") then
-        table.insert(Dropdown.Values, playerr.Name)
-    end
-end
-
-Dropdown:OnChanged(function(Value)
-    for _, player in ipairs(game.Players:GetPlayers()) do
-    if player:IsA("Player") then
-        table.insert(Dropdown.Values, player.Name)
-    end
-end
-    print("Selected player:", Value)
-end)
-
 	-- interface settings
 	InterfaceManager:SetLibrary(Fluent)
 	InterfaceManager:BuildInterfaceSection(Settings)
