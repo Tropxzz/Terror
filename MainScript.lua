@@ -49,6 +49,20 @@ Main:AddButton({
 	end
 })
 
+-- Player
+
+Plr:AddSlider("Ws", {
+	Title = "WalkSpeed",
+	Description = "Speeds up your Player",
+	Default = 16,
+	Min = 16,
+	Max = 1000,
+	Rounding = 1,
+	Callback = function(Value)
+		player.Character.Humanoid.WalkSpeed = Value
+	end
+})
+
 -- Combat
 
 
