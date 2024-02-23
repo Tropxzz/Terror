@@ -112,4 +112,3 @@ end)
 
 
 	Dialog.yellow("The Script Terror has loaded")
-
