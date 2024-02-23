@@ -63,6 +63,31 @@ Plr:AddSlider("Ws", {
 	end
 })
 
+Plr:AddSlider("JP", {
+	Title = "JUMPPOWER",
+	Description = "Makes your character Jump Higher",
+	Default = 50,
+	Min = 50,
+	Max = 1000,
+	Rounding = 1,
+	Callback = function(Value)
+		player.Character.Humanoid.JumpPower = Value
+	end
+})
+
+Plr:AddSlider("HipHeight", {
+	Title = "HipHeight",
+	Description = "Makes your character Float",
+	Default = 1.9980254173278809,
+	Min = 1.9980254173278809,
+	Max = 250,
+	Rounding = 1,
+	Callback = function(Value)
+		player.Character.Humanoid.HipHeight = Value
+	end
+})
+
+
 -- Combat
 
 
