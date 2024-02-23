@@ -3,7 +3,7 @@
 	local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
 	local ESPModule = loadstring(game:HttpGet("https://raw.githubusercontent.com/Tropxzz/Terror/main/Modules/ESPModule.lua", true))()
 	local AimbotModule = loadstring(game:HttpGet("https://raw.githubusercontent.com/Tropxzz/Terror/main/Modules/Aimbot.lua", true))()
-
+	local Dialog = loadstring(game:HttpGet("https://raw.githubusercontent.com/Tropxzz/Terror/main/Modules/TerrorDialog.lua", true))()
 -- varibles
 	local PlaceId = game.PlaceId
 	local JobId = game.JobId
@@ -11,7 +11,7 @@
 	-- main script
 
 	local Window = Fluent:CreateWindow({
-		Title = "Terror" .. Fluent.Version,
+		Title = "Terror 1.0",
 		SubTitle = "by Jimmy/Tropxz",
 		TabWidth = 160,
 		Size = UDim2.fromOffset(580, 460),
@@ -21,6 +21,7 @@
 	})
 
 		Main = Window:AddTab({ Title = "Welcome", Icon = "home" })
+		Plr = Window:AddTab({ Title = "Player", Icon = "user" })
 		Combat = Window:AddTab({ Title = "Combat", Icon = "swords" })
 		Trolling = Window:AddTab({ Title = "Trolling", Icon = "venetian-mask" })
 		Commands = Window:AddTab({ Title = "Commands", Icon = "terminal-square" })
@@ -71,8 +72,30 @@ Combat:AddButton({
 		AimbotModule.StartAimbot()
 	end
 })
+_G.TracersVisible = false
+local Toggle = Combat:AddToggle("Tracers by Exunys", {Title = "Tracers by Exunys", Default = false })
+local tracescriptenabled = false
+Toggle:OnChanged(function()
+	if tracescriptenabled == false then
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/Tropxzz/Terror/main/ExternalScripts/EnuxysTracers", true))()
+		tracescriptenabled = true
+	end
+	if Toggle.Value == false then
+		_G.TracersVisible = false
+	else
+		_G.TracersVisible = true
+	end
+end)
+
 
 	-- interface settings
 	InterfaceManager:SetLibrary(Fluent)
 	InterfaceManager:BuildInterfaceSection(Settings)
+
+
+-- put code above this not under 👑😭🙏
+
+
+
+	Dialog.yellow("The Script Terror has loaded")
 
