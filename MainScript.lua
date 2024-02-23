@@ -103,35 +103,26 @@ Noclip:OnChanged(function()
 end)
 
 local Dropdown = Combat:AddDropdown("Dropdown", {
-	Title = "Dropdown",
-	Values = {},
-	Multi = false,
-	Default = nil
+    Title = "Dropdown",
+    Values = {}, 
+    Multi = false,
+    Default = nil
 })
 
-for _, player in ipairs(game.Players:GetPlayers()) do
-	if player:IsA("Player") then
-		table.insert(Dropdown.Values, player)
-	end
+-- Populate dropdown values initially
+for _, playerr in ipairs(game.Players:GetPlayers()) do
+    if player:IsA("Player") then
+        table.insert(Dropdown.Values, playerr.Name)
+    end
 end
 
-game.Players.PlayerAdded:Connect(function(player)
-	if player:IsA("Player") then
-		table.insert(Dropdown.Values, player)
-	end
-end)
-
-game.Players.PlayerRemoving:Connect(function(player)
-	for i, v in ipairs(Dropdown.Values) do
-		if v == player then
-			table.remove(Dropdown.Values, i)
-			break
-		end
-	end
-end)
-
 Dropdown:OnChanged(function(Value)
-	print("Selected player:", Value)
+    for _, player in ipairs(game.Players:GetPlayers()) do
+    if player:IsA("Player") then
+        table.insert(Dropdown.Values, player.Name)
+    end
+end
+    print("Selected player:", Value)
 end)
 
 	-- interface settings
