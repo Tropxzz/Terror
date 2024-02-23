@@ -111,7 +111,7 @@ local Dropdown = Combat:AddDropdown("Dropdown", {
 	Title = "Dropdown",
 	Values = {},
 	Multi = false,
-	Default = 1,
+	Default = nil
 })
 
 for i,v in ipairs(game.Players:GetChildren()) do
