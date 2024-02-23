@@ -104,20 +104,28 @@ end)
 local t =  {}
 for i,v in ipairs(game.Players:GetChildren()) do
 	if v:IsA("Player") then
-		table.insert(t, v)
-
 	end
 end
 
 local Dropdown = Combat:AddDropdown("Dropdown", {
 	Title = "Dropdown",
-	Values = {t},
+	Values = {},
 	Multi = false,
 	Default = 1,
 })
 
+for i,v in ipairs(game.Players:GetChildren()) do
+	if v:IsA("Player") then
+		table.insert(Dropdown.Value, v)
+	end
+end
+
 Dropdown:OnChanged(function(Value)
-	print("Dropdown changed:", Value)
+	for i,v in ipairs(game.Players:GetChildren()) do
+		if v:IsA("Player") then
+			table.insert(Dropdown.Value, v)
+		end
+	end
 end)
 
 
