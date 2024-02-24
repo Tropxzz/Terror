@@ -370,7 +370,7 @@ if vars.bypasser then
                     return characters[char] or char
                 end)
 
-                local rbxGeneral = game.Text:WaitForChild('TextChannels'):WaitForChild('RBXGeneral'):IsA("TextChannel") and game.TextChatService:WaitForChild('TextChannels'):WaitForChild('RBXGeneral') or nil
+                local rbxGeneral = game.TextChatService:WaitForChild('TextChannels'):WaitForChild('RBXGeneral'):IsA("TextChannel") and game.TextChatService:WaitForChild('TextChannels'):WaitForChild('RBXGeneral') or nil
 
                 rbxGeneral:SendAsync(tostring(" ̌̌̌  ॓᳚॓ť" .. newMessage))
             end
