@@ -151,20 +151,13 @@ local Spectate = Combat:AddDropdown("Spectate", {
 	Default = player.Name,
 })
 
+local names = {}
+local players = game.Players:GetPlayers()
+for i, player in ipairs(players) do
+	table.insert(names, player.Name)
+end
+Spectate:SetValues(names)
 
-
-game.Players.PlayerAdded:Connect(function(player)
-	for _,v in ipairs(game.Players:GetPlayers()) do
-		Spectate:SetValues(v.Name)
-
-	end
-end)
-
-game.Players.PlayerRemoving:Connect(function(player) -- i think its removed
-	for _,v in ipairs(game.Players:GetPlayers()) do
-		Spectate:SetValues(v.Name)
-	end
-end)
 
 
 Spectate:OnChanged(function(Value)
