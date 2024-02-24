@@ -26,7 +26,7 @@
 				Combat = Window:AddTab({ Title = "Combat", Icon = "swords" })
 				Trolling = Window:AddTab({ Title = "Trolling", Icon = "venetian-mask" })
 				Commands = Window:AddTab({ Title = "Commands", Icon = "terminal-square" })
-				RPS = Window:AddTab({ Title = "RPS", Icon = "database" })
+				RPS = Window:AddTab({ Title = "RSP", Icon = "database" })
 		      -- the fact i might've called it skid haven
 				Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
 
@@ -87,7 +87,43 @@
 			Callback = function(Value)
 				player.Character.Humanoid.HipHeight = Value
 			end
-		});
+});
+
+local spinSpeed = 1
+local Toggle = player:AddToggle("Spin", {Title = "Spin", Default = false })
+
+Toggle:OnChanged(function()
+	if Toggle.Value == true then
+		 for i,v in pairs(game.Players.LocalPlayer.Character.HumanoidRootPart:GetChildren()) do
+		if v.Name == "Spinning" then
+			v:Destroy()
+		end
+	end
+	local Spin = Instance.new("BodyAngularVelocity")
+	Spin.Name = "Spinning"
+	Spin.Parent = game.Players.LocalPlayer.Character.HumanoidRootPart
+	Spin.MaxTorque = Vector3.new(0, math.huge, 0)
+		Spin.AngularVelocity = Vector3.new(0,spinSpeed,0)
+	else
+		for i,v in pairs(game.Players.LocalPlayer.Character.HumanoidRootPart:GetChildren()) do
+		if v.Name == "Spinning" then
+			v:Destroy()
+		end
+	end
+	end
+    end)
+
+    local Input = player:AddInput("SpinSpeed", {
+        Title = "SpinSpeed",
+        Default = "1",
+        Placeholder = "1",
+        Numeric = true, -- Only allows numbers
+        Finished = false, -- Only calls callback when you press enter
+        Callback = function(Value)
+                    spinSpeed = Value
+        end
+    })
+
 
 
 		-- Combat
@@ -156,12 +192,12 @@ local players = game.Players:GetPlayers()
 for i, player in ipairs(players) do
 	table.insert(names, player.Name)
 end
-Spectate:SetValues(names)
+	Spectate:SetValues(names)
 
-Spectate:OnChanged(function(Value)
-	if game.Players:FindFirstChild(Value) then
-		workspace.CurrentCamera.CameraSubject = game.Players[Value].Character
-	end
+	Spectate:OnChanged(function(Value)
+		if game.Players:FindFirstChild(Value) then
+			workspace.CurrentCamera.CameraSubject = game.Players[Value].Character
+		end
 end)
 
 			-- interface settings
@@ -174,3 +210,5 @@ end)
 
 
 			Dialog.yellow("The Script Terror has loaded")
+		
+		
