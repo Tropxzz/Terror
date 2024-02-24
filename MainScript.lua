@@ -239,7 +239,6 @@ end
 			workspace.CurrentCamera.CameraSubject = game.Players[Value].Character
 		end
 end)
-
 -- Trolling
 
 		local SF = Combat:AddToggle("SF", {Title = "Spinfling by JackMcJagger15 (R15)", Default = false })
@@ -249,7 +248,7 @@ end)
 					if SF.Value == false  then
 		for i,v in ipairs(game.Players.LocalPlayer.Character.HumanoidRootPart:GetChildren()) do
 			if v:IsA("BodyThrust") then
-				v:Destory()
+				v:Destroy()
 			end
 		end
 			elseif SF.Value == true  then
