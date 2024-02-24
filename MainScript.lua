@@ -5,7 +5,8 @@
 			local ESPModule = loadstring(game:HttpGet("https://raw.githubusercontent.com/Tropxzz/Terror/main/Modules/ESPModule.lua", true))()
 			local AimbotModule = loadstring(game:HttpGet("https://raw.githubusercontent.com/Tropxzz/Terror/main/Modules/Aimbot.lua", true))()
 			local Dialog = loadstring(game:HttpGet("https://raw.githubusercontent.com/Tropxzz/Terror/main/Modules/TerrorDialog.lua", true))()
-		-- varibles
+			local HTTPRequest = (fluxus and fluxus.request) or (syn and syn.request) or (http and http.request) or http_request or request
+-- varibles
 			local PlaceId = game.PlaceId
 			local JobId = game.JobId
 			local player = game.Players.LocalPlayer
@@ -26,7 +27,9 @@
 				Combat = Window:AddTab({ Title = "Combat", Icon = "swords" })
 				Trolling = Window:AddTab({ Title = "Trolling", Icon = "venetian-mask" })
 				Commands = Window:AddTab({ Title = "Commands", Icon = "terminal-square" })
-				RPS = Window:AddTab({ Title = "RSP", Icon = "database" })
+				RPS = Window:AddTab({ Title = "RPS", Icon = "database" })
+				Crypto = Window:AddTab({ Title = "Crypto", Icon = "database" })
+
 		      -- the fact i might've called it skid haven
 				Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
 
@@ -287,6 +290,53 @@ end
 			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[Value].Character.HumanoidRootPart.CFrame
 		end
 end)
+
+-- COmmands
+
+-- Crypto 
+
+
+		Main:AddButton({
+			Title = "Btc Buy price USD",
+			Description = "Gets btc buy price.",
+			Callback = function()
+		local function GetKey()
+    if HTTPRequest then
+        local response = HTTPRequest({
+            Url = "https://blockchain.info/ticker",
+            Method = "GET",
+        })
+
+        if response and response.Success then
+            local jsonResponse = game:GetService("HttpService"):JSONDecode(response.Body)
+            return jsonResponse and jsonResponse.USD and jsonResponse.USD.buy
+        else
+            warn("Failed to fetch data:", response and response.StatusCode)
+        end
+    else
+        warn("No HTTPRequest available")
+    end
+
+    return nil
+end
+
+local key = GetKey()
+if key then
+    Fluent:Notify({
+    Title = "Fluent",
+    Content = "(why did i make this) Btc buy price is "..tostring(key),
+    Duration = 8
+})
+else
+    Fluent:Notify({
+    Title = "Fluent",
+    Content = "Error noticed.",
+    Duration = 3
+})
+end
+	end
+})
+
 
 -- interface settings
 			InterfaceManager:SetLibrary(Fluent)
