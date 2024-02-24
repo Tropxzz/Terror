@@ -28,9 +28,6 @@
 				Trolling = Window:AddTab({ Title = "Trolling", Icon = "venetian-mask" })
 				Commands = Window:AddTab({ Title = "Commands", Icon = "terminal-square" })
 				RPS = Window:AddTab({ Title = "RPS", Icon = "database" })
-				Crypto = Window:AddTab({ Title = "Crypto", Icon = "database" })
-
-		      -- the fact i might've called it skid haven
 				Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
 
 			  Main:AddParagraph({
@@ -292,51 +289,6 @@ end
 end)
 
 -- COmmands
-
--- Crypto 
-
-
-		Main:AddButton({
-			Title = "Btc Buy price USD",
-			Description = "Gets btc buy price.",
-			Callback = function()
-		local function GetKey()
-    if HTTPRequest then
-        local response = HTTPRequest({
-            Url = "https://blockchain.info/ticker",
-            Method = "GET",
-        })
-
-        if response and response.Success then
-            local jsonResponse = game:GetService("HttpService"):JSONDecode(response.Body)
-            return jsonResponse and jsonResponse.USD and jsonResponse.USD.buy
-        else
-            warn("Failed to fetch data:", response and response.StatusCode)
-        end
-    else
-        warn("No HTTPRequest available")
-    end
-
-    return nil
-end
-
-local key = GetKey()
-if key then
-    Fluent:Notify({
-    Title = "Fluent",
-    Content = "(why did i make this) Btc buy price is "..tostring(key),
-    Duration = 8
-})
-else
-    Fluent:Notify({
-    Title = "Fluent",
-    Content = "Error noticed.",
-    Duration = 3
-})
-end
-	end
-})
-
 
 -- interface settings
 			InterfaceManager:SetLibrary(Fluent)
