@@ -87,7 +87,11 @@ characters = {
 				Trolling = Window:AddTab({ Title = "Trolling", Icon = "venetian-mask" })
 				Commands = Window:AddTab({ Title = "Commands", Icon = "terminal-square" })
 				RPS = Window:AddTab({ Title = "RPS", Icon = "database" })
-				Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
+Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
+
+
+Window:SelectTab(1)
+
 
 			  Main:AddParagraph({
 				Title = "Welcome",
