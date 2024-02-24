@@ -90,7 +90,7 @@
 });
 
 local spinSpeed = 1
-local Toggle = player:AddToggle("Spin", {Title = "Spin", Default = false })
+local Toggle = Plr:AddToggle("Spin", {Title = "Spin", Default = false })
 
 Toggle:OnChanged(function()
 	if Toggle.Value == true then
