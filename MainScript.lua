@@ -41,6 +41,14 @@
 				Callback = function()
 					game["Teleport Service"]:TeleportToPlaceInstance(PlaceId, JobId, player)
 				end
+})
+
+Main:AddButton({
+		Title = "Screenshot",
+		Description = "Takes a screenshot.",
+		Callback = function()
+				return game.CoreGui:TakeScreenshot()
+			end
 		})
 
 		Main:AddButton({
@@ -49,6 +57,36 @@
 			Callback = function()
 				game:GetService("TeleportService"):TeleportToPlaceInstance(PlaceId, player)
 			end
+})
+
+
+Main:AddButton({
+	Title = "AntiClientKick",
+	Description = "Cant get kicked by the client. MADE BY IY",
+	Callback = function()
+			if not hookmetamethod then 
+		return Dialog.red("Your executor doesn't support hookmetamethod")
+	end
+	local TeleportService = game["Teleport Service"]
+	local oldhmmi
+	local oldhmmnc
+	oldhmmi = hookmetamethod(game, "__index", function(self, method)
+		if self == TeleportService then
+			if method:lower() == "teleport" then
+				return error("Expected ':' not '.' calling member function Kick", 2)
+			elseif method == "TeleportToPlaceInstance" then
+				return error("Expected ':' not '.' calling member function TeleportToPlaceInstance", 2)
+			end
+		end
+		return oldhmmi(self, method)
+	end)
+	oldhmmnc = hookmetamethod(game, "__namecall", function(self, ...)
+		if self == TeleportService and getnamecallmethod():lower() == "teleport" or getnamecallmethod() == "TeleportToPlaceInstance" then
+			return
+		end
+		return oldhmmnc(self, ...)
+	end)
+	     end
 		})
 
 		-- Player
@@ -123,6 +161,8 @@ s:OnChanged(function()
                     spinSpeed = Value
         end
     })
+
+
 
 
 
