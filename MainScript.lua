@@ -350,7 +350,7 @@ end)
 -- COmmands
 
 
-		Combat:AddButton({
+		Commands:AddButton({
 			Title = "chatbypass (toggle)",
 			Description = "Bypasses the disgusting chat filter.",
 			Callback = function()
