@@ -158,8 +158,6 @@ for i, player in ipairs(players) do
 end
 Spectate:SetValues(names)
 
-
-
 Spectate:OnChanged(function(Value)
 	if game.Players:FindFirstChild(Value) then
 		workspace.CurrentCamera.CameraSubject = game.Players[Value].Character
