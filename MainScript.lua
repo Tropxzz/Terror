@@ -284,7 +284,7 @@ end
 
 	GoTo:OnChanged(function(Value)
 		if game.Players:FindFirstChild(Value) then
-			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[Value].HumanoidRootPart.CFrame
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[Value].Character.HumanoidRootPart.CFrame
 		end
 end)
 
