@@ -90,10 +90,10 @@
 });
 
 local spinSpeed = 1
-local Toggle = Plr:AddToggle("Spin", {Title = "Spin", Default = false })
+local s = Plr:AddToggle("Spin", {Title = "Spin", Default = false })
 
-Toggle:OnChanged(function()
-	if Toggle.Value == true then
+s:OnChanged(function()
+	if s.Value == true then
 		 for i,v in pairs(game.Players.LocalPlayer.Character.HumanoidRootPart:GetChildren()) do
 		if v.Name == "Spinning" then
 			v:Destroy()
@@ -113,7 +113,7 @@ Toggle:OnChanged(function()
 	end
     end)
 
-    local Input = player:AddInput("SpinSpeed", {
+    local Input = Plr:AddInput("SpinSpeed", {
         Title = "SpinSpeed",
         Default = "1",
         Placeholder = "1",
