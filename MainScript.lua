@@ -6,9 +6,68 @@
 			local AimbotModule = loadstring(game:HttpGet("https://raw.githubusercontent.com/Tropxzz/Terror/main/Modules/Aimbot.lua", true))()
 			local Dialog = loadstring(game:HttpGet("https://raw.githubusercontent.com/Tropxzz/Terror/main/Modules/TerrorDialog.lua", true))()
 			local HTTPRequest = (fluxus and fluxus.request) or (syn and syn.request) or (http and http.request) or http_request or request
+			local hook = loadstring(game:HttpGet("https://raw.githubusercontent.com/Tropxzz/Terror/main/Modules/Hook.lua", true))()
 -- varibles
 			local PlaceId = game.PlaceId
-			local JobId = game.JobId
+local JobId = game.JobId
+local vars = {}
+
+characters = {
+    ['A'] = 'А',
+    ['a'] = 'а',
+    ['B'] = 'В',
+    ['C'] = 'С',
+    ['c'] = 'с',
+    --['D'] = '',
+    --['d'] = '',
+    ['E'] = 'Е',
+    ['e'] = 'е',
+    --['F'] = '',
+    --['f'] = '',
+    --['G'] = '',
+    --['g'] = '',
+    ['H'] = 'Н',
+    ['h'] = 'һ',
+    ['I'] = 'І',
+    ['i'] = 'і',
+    ['J'] = 'Ј',
+    ['j'] = 'ј',
+    --['K'] = '',
+    --['k'] = '',
+    --['L'] = '',
+    ['l'] = 'ӏ',
+    ['M'] = 'М',
+    --['m'] = '',
+    --['N'] = '',
+    --['n'] = '',
+    ['O'] = 'О',
+    ['o'] = 'о',
+    ['P'] = 'Р',
+    ['p'] = 'р',
+    --['Q'] = '',
+    --['q'] = '',
+    --['R'] = '',
+    --['r'] = '',
+    ['S'] = 'Ѕ',
+    ['s'] = 'ѕ',
+    ['T'] = 'Т',
+    --['t'] = '',
+    --['U'] = '',
+    --['u'] = '',
+    ['V'] = 'Ѵ',
+    ['v'] = 'ν',
+    --['W'] = '',
+    --['w'] = '',
+    ['X'] = 'Х',
+    ['x'] = 'х',
+    ['Y'] = 'Υ',
+    ['y'] = 'у',
+    ['Z'] = 'Ζ',
+    --['z'] = '',
+}
+
+
+
 			local player = game.Players.LocalPlayer
 			-- main script
 
@@ -289,6 +348,64 @@ end
 end)
 
 -- COmmands
+
+
+		Combat:AddButton({
+			Title = "chatbypass (toggle)",
+			Description = "Bypasses the disgusting chat filter.",
+			Callback = function()
+				vars.bypasser = not vars.bypasser
+
+if vars.bypasser then
+    if hook.isOld() == "Modern" then
+        local secondary = game.CoreGui:FindFirstChild("TextBoxContainer", true):IsA("Frame") and game.CoreGui:FindFirstChild("TextBoxContainer", true) or nil
+        local messageBox = secondary and secondary:WaitForChild("TextBox"):IsA("TextBox") and secondary:WaitForChild("TextBox") or nil
+
+        messageBox.FocusLost:Connect(function(enterPressed)
+            local newMessage = messageBox.Text
+            if enterPressed then
+                messageBox.Text = ''
+
+                newMessage = string.gsub(newMessage, '.', function(char)
+                    return characters[char] or char
+                end)
+
+                local rbxGeneral = game.Text:WaitForChild('TextChannels'):WaitForChild('RBXGeneral'):IsA("TextChannel") and game.TextChatService:WaitForChild('TextChannels'):WaitForChild('RBXGeneral') or nil
+
+                rbxGeneral:SendAsync(tostring(" ̌̌̌  ॓᳚॓ť" .. newMessage))
+            end
+        end)
+    elseif hook.isOld() == "Legacy" then
+        local localPlayer = players.LocalPlayer
+        local playerGui = localPlayer:WaitForChild('PlayerGui')
+
+        local chatBar = playerGui:WaitForChild('Chat'):WaitForChild('Frame'):WaitForChild('ChatBarParentFrame'):WaitForChild('Frame'):WaitForChild('BoxFrame'):WaitForChild('Frame'):WaitForChild('ChatBar'):IsA("TextBox") and playerGui:WaitForChild('Chat'):WaitForChild('Frame'):WaitForChild('ChatBarParentFrame'):WaitForChild('Frame'):WaitForChild('BoxFrame'):WaitForChild('Frame'):WaitForChild('ChatBar') or nil
+
+        local remote = game:GetService('ReplicatedStorage'):FindFirstChild('DefaultChatSystemChatEvents') and game:GetService('ReplicatedStorage'):FindFirstChild('DefaultChatSystemChatEvents'):FindFirstChild('SayMessageRequest'):IsA("RemoteEvent") and game:GetService('ReplicatedStorage'):FindFirstChild('DefaultChatSystemChatEvents'):FindFirstChild('SayMessageRequest') or nil
+
+        chatBar.FocusLost:Connect(function(enterPressed)
+            local newMessage = chatBar.Text
+
+            if enterPressed then
+                chatBar.Text = ''
+
+                newMessage = string.gsub(newMessage, '.', function(char)
+                    return characters[char] or char
+                end)
+
+                remote:FireServer(tostring(" ̌̌̌  ॓᳚॓ť" .. newMessage), 'All')
+            end
+        end)
+    end
+
+    print('Chat filtering has been disabled.')
+else
+    print('Chat filtering has been enabled.')
+    print('Normal messages will stop tagging after ~30 seconds.')
+end
+
+			end
+		})
 
 -- interface settings
 			InterfaceManager:SetLibrary(Fluent)
