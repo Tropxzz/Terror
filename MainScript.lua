@@ -241,7 +241,7 @@ end
 end)
 -- Trolling
 
-		local SF = Combat:AddToggle("SF", {Title = "Spinfling by JackMcJagger15 (R15)", Default = false })
+		local SF = Trolling:AddToggle("SF", {Title = "Spinfling by JackMcJagger15 (R15)", Default = false })
 
 		SF:OnChanged(function()
 			
@@ -266,6 +266,26 @@ bambam.Parent = game.Players.LocalPlayer.Character.HumanoidRootPart
 bambam.Force = Vector3.new(power,0,power)
 bambam.Location = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
 			end
+end)
+
+local GoTo = Trolling:AddDropdown("Goto", {
+	Title = "GoTo",
+	Values = {},
+	Multi = false,
+	Default = player.Name,
+})
+
+local names = {}
+local players = game.Players:GetPlayers()
+for i, player in ipairs(players) do
+	table.insert(names, player.Name)
+end
+	GoTo:SetValues(names)
+
+	GoTo:OnChanged(function(Value)
+		if game.Players:FindFirstChild(Value) then
+			player.Character.HumanoidRootPart.CFrame = game.Players[Value].HumanoidRootPart.CFrame
+		end
 end)
 
 -- interface settings
