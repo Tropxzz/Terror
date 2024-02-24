@@ -240,12 +240,41 @@ end
 		end
 end)
 
-			-- interface settings
+-- Trolling
+
+		local SF = Combat:AddToggle("SF", {Title = "Spinfling by JackMcJagger15 (R15)", Default = false })
+
+		SF:OnChanged(function()
+			
+					if SF.Value == false  then
+		for i,v in ipairs(game.Players.LocalPlayer.Character.HumanoidRootPart:GetChildren()) do
+			if v:IsA("BodyThrust") then
+				v:Destory()
+			end
+		end
+			elseif SF.Value == true  then
+				local power = 500 -- change this to make it more or less powerful
+
+game:GetService('RunService').Stepped:connect(function()
+game.Players.LocalPlayer.Character.Head.CanCollide = false
+game.Players.LocalPlayer.Character.UpperTorso.CanCollide = false
+game.Players.LocalPlayer.Character.LowerTorso.CanCollide = false
+game.Players.LocalPlayer.Character.HumanoidRootPart.CanCollide = false
+end)
+wait(.1)
+local bambam = Instance.new("BodyThrust")
+bambam.Parent = game.Players.LocalPlayer.Character.HumanoidRootPart
+bambam.Force = Vector3.new(power,0,power)
+bambam.Location = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
+			end
+end)
+
+-- interface settings
 			InterfaceManager:SetLibrary(Fluent)
 			InterfaceManager:BuildInterfaceSection(Settings)
 
 
-		-- put code above this not under 👑😭🙏
+		-- put code above this not under 👑😭🙏 
 
 
 
