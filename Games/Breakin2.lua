@@ -164,7 +164,7 @@ Ingame:AddButton({
 			task.wait(.1)
 			player.Backpack:WaitForChild("Louise").Parent = player.Character
 			Events:WaitForChild("LouiseGive"):FireServer(2)
-		end
+		end	
 
 		local function GetUncle()
 			GiveItem("Key")
@@ -182,6 +182,26 @@ Ingame:AddButton({
 	end,
 })
 
+   Ingame:AddParagraph({
+        Title = "Section 3",
+	Content = "This section contains  item Exploits"
+})
+
+Ingame:AddButton({
+        Title = "Get armor",
+        Description = 'Free armor fr.',
+        Callback = function()
+              		local function GiveItem(Item)
+			if Item == "Armor" then
+				Events:WaitForChild("Vending"):FireServer(3, "Armor2", "Armor", tostring(player), 1)
+			else
+				Events:WaitForChild("GiveTool"):FireServer(tostring(Item:gsub(" ", "")))
+			end
+		end
+
+		GiveItem("Armor") -- rizz bros
+	end,
+})
 
 -- settings
 
