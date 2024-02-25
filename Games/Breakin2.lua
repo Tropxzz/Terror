@@ -235,8 +235,23 @@ Ingame:AddButton({
 	end,
 })
 
--- settings
+Ingame:AddButton({
+        Title = "Get PitchFork",
+        Description = 'we abouta sacrifice someone.',
+        Callback = function()
+              		local function GiveItem(Item)
+			if Item == "Armor" then
+				Events:WaitForChild("Vending"):FireServer(3, "Armor2", "Armor", tostring(player), 1)
+			else
+				Events:WaitForChild("GiveTool"):FireServer(tostring(Item:gsub(" ", "")))
+			end
+		end
 
+		GiveItem("PitchFork")
+	end,
+})
+
+-- settings
 
 	InterfaceManager:SetLibrary(Fluent)
 InterfaceManager:BuildInterfaceSection(Settings)
