@@ -19,7 +19,9 @@ local Lobby = Window:AddTab({ Title = "Lobby", Icon = "egg" })
 local Ingame = Window:AddTab({ Title = "Ingame", Icon = "egg" })
 local Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
 
-
+function TeleportTo(c)
+	player.Character.HumanoidRootPart.CFrame = c
+end
 
 Window:SelectTab(1)
 
@@ -59,7 +61,7 @@ Lobby:AddButton({
 
 -- Ingame
 
-   Lobby:AddParagraph({
+   Ingame:AddParagraph({
         Title = "Section 1",
 	Content = "This section contains Speed/Strength Exploits"
 })
@@ -122,9 +124,62 @@ Ingame:AddButton({
 	end,
 })
 
-   Lobby:AddParagraph({
+   Ingame:AddParagraph({
         Title = "Section 2",
 	Content = "This section contains  NPC Exploits"
+})
+
+Ingame:AddButton({
+	Title = "Get all NPCS",
+	Description = "gets all npcs.",
+	Callback = function()
+		local function GiveItem(Item)
+			if Item == "Armor" then
+				Events:WaitForChild("Vending"):FireServer(3, "Armor2", "Armor", tostring(game.Players.LocalPlayer), 1)
+			else
+				Events:WaitForChild("GiveTool"):FireServer(tostring(Item:gsub(" ", "")))
+			end
+		end
+		
+		local function GetDog()
+			for i, v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.Assets.Note.Note.Note:GetChildren()) do
+				if v.Name:match("Circle") and v.Visible == true then
+					GiveItem(tostring(v.Name:gsub("Circle", "")))
+					task.wait(.1)
+					player.Backpack:WaitForChild(tostring(v.Name:gsub("Circle", ""))).Parent = player.Character
+					TeleportTo(CFrame.new(-257.56839, 29.4499969, -910.452637, -0.238445505, 7.71292363e-09, 0.971155882, 1.2913591e-10, 1, -7.91029819e-09, -0.971155882, -1.76076387e-09, -0.238445505))
+					task.wait(.5)
+					Events:WaitForChild("CatFed"):FireServer(tostring(v.Name:gsub("Circle", "")))
+				end
+			end
+			task.wait(2)
+			for i = 1, 3 do
+				TeleportTo(CFrame.new(-203.533081, 30.4500484, -790.901428, -0.0148558766, 8.85941187e-09, -0.999889672, 2.65695732e-08, 1, 8.46563175e-09, 0.999889672, -2.64408779e-08, -0.0148558766) + Vector3.new(0, 5, 0))
+				task.wait(.1)
+			end
+		end
+
+		local function GetAgent()
+			GiveItem("Louise")
+			task.wait(.1)
+			player.Backpack:WaitForChild("Louise").Parent = player.Character
+			Events:WaitForChild("LouiseGive"):FireServer(2)
+		end
+
+		local function GetUncle()
+			GiveItem("Key")
+			task.wait(.1)
+			player.Backpack:WaitForChild("Key").Parent = player.Character
+			wait(.5)
+			Events.KeyEvent:FireServer()
+		end
+		
+		GetUncle()
+		task.wait(3)
+		GetDog()
+		task.wait(3)
+		GetAgent()
+	end,
 })
 
 
