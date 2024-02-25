@@ -9,4 +9,4 @@ else
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/Tropxzz/Terror/main/Universal.lua", true))()
 end
 
-queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/Tropxzz/Terror/main/Checker.lua', true))()")
+-- queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/Tropxzz/Terror/main/Checker.lua', true))()")
