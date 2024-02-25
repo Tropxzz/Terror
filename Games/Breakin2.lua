@@ -219,7 +219,24 @@ Ingame:AddButton({
 	end,
 })
 
+Ingame:AddButton({
+        Title = "Get GOlden pizza",
+        Description = 'Free Health  fr.',
+        Callback = function()
+              		local function GiveItem(Item)
+			if Item == "Armor" then
+				Events:WaitForChild("Vending"):FireServer(3, "Armor2", "Armor", tostring(player), 1)
+			else
+				Events:WaitForChild("GiveTool"):FireServer(tostring(Item:gsub(" ", "")))
+			end
+		end
+
+		GiveItem("Gold Pizza")
+	end,
+})
+
 -- settings
+
 
 	InterfaceManager:SetLibrary(Fluent)
 InterfaceManager:BuildInterfaceSection(Settings)
