@@ -12,60 +12,6 @@
 local JobId = game.JobId
 local vars = {}
 
-characters = {
-    ['A'] = 'А',
-    ['a'] = 'а',
-    ['B'] = 'В',
-    ['C'] = 'С',
-    ['c'] = 'с',
-    --['D'] = '',
-    --['d'] = '',
-    ['E'] = 'Е',
-    ['e'] = 'е',
-    --['F'] = '',
-    --['f'] = '',
-    --['G'] = '',
-    --['g'] = '',
-    ['H'] = 'Н',
-    ['h'] = 'һ',
-    ['I'] = 'І',
-    ['i'] = 'і',
-    ['J'] = 'Ј',
-    ['j'] = 'ј',
-    --['K'] = '',
-    --['k'] = '',
-    --['L'] = '',
-    ['l'] = 'ӏ',
-    ['M'] = 'М',
-    --['m'] = '',
-    --['N'] = '',
-    --['n'] = '',
-    ['O'] = 'О',
-    ['o'] = 'о',
-    ['P'] = 'Р',
-    ['p'] = 'р',
-    --['Q'] = '',
-    --['q'] = '',
-    --['R'] = '',
-    --['r'] = '',
-    ['S'] = 'Ѕ',
-    ['s'] = 'ѕ',
-    ['T'] = 'Т',
-    --['t'] = '',
-    --['U'] = '',
-    --['u'] = '',
-    ['V'] = 'Ѵ',
-    ['v'] = 'ν',
-    --['W'] = '',
-    --['w'] = '',
-    ['X'] = 'Х',
-    ['x'] = 'х',
-    ['Y'] = 'Υ',
-    ['y'] = 'у',
-    ['Z'] = 'Ζ',
-    --['z'] = '',
-}
-
 
 
 			local player = game.Players.LocalPlayer
@@ -83,11 +29,8 @@ characters = {
 
 				Main = Window:AddTab({ Title = "Welcome", Icon = "home" })
 				Plr = Window:AddTab({ Title = "Player", Icon = "user" })
-				Combat = Window:AddTab({ Title = "Combat", Icon = "swords" })
-				Trolling = Window:AddTab({ Title = "Trolling", Icon = "venetian-mask" })
-				Commands = Window:AddTab({ Title = "Commands", Icon = "terminal-square" })
-				RPS = Window:AddTab({ Title = "RPS", Icon = "database" })
-Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
+				Combat = Window:AddTab	({ Title = "Combat", Icon = "swords" })
+				Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
 
 
 Window:SelectTab(1)
@@ -302,114 +245,6 @@ end
 			workspace.CurrentCamera.CameraSubject = game.Players[Value].Character
 		end
 end)
--- Trolling
-
-		local SF = Trolling:AddToggle("SF", {Title = "Spinfling by JackMcJagger15 (R15)", Default = false })
-
-		SF:OnChanged(function()
-			
-					if SF.Value == false  then
-		for i,v in ipairs(game.Players.LocalPlayer.Character.HumanoidRootPart:GetChildren()) do
-			if v:IsA("BodyThrust") then
-				v:Destroy()
-			end
-		end
-			elseif SF.Value == true  then
-				local power = 500 -- change this to make it more or less powerful
-
-game:GetService('RunService').Stepped:connect(function()
-game.Players.LocalPlayer.Character.Head.CanCollide = false
-game.Players.LocalPlayer.Character.UpperTorso.CanCollide = false
-game.Players.LocalPlayer.Character.LowerTorso.CanCollide = false
-game.Players.LocalPlayer.Character.HumanoidRootPart.CanCollide = false
-end)
-wait(.1)
-local bambam = Instance.new("BodyThrust")
-bambam.Parent = game.Players.LocalPlayer.Character.HumanoidRootPart
-bambam.Force = Vector3.new(power,0,power)
-bambam.Location = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
-			end
-end)
-
-local GoTo = Trolling:AddDropdown("Goto", {
-	Title = "GoTo",
-	Values = {},
-	Multi = false,
-	Default = player.Name,
-})
-
-local names = {}
-local players = game.Players:GetPlayers()
-for i, player in ipairs(players) do
-	table.insert(names, player.Name)
-end
-	GoTo:SetValues(names)
-
-	GoTo:OnChanged(function(Value)
-		if game.Players:FindFirstChild(Value) then
-			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[Value].Character.HumanoidRootPart.CFrame
-		end
-end)
-
--- COmmands
-
-
-		Commands:AddButton({
-			Title = "chatbypass (toggle)",
-			Description = "Bypasses the disgusting chat filter.",
-			Callback = function()
-				vars.bypasser = not vars.bypasser
-
-if vars.bypasser then
-    if hook.isOld() == "Modern" then
-        local secondary = game.CoreGui:FindFirstChild("TextBoxContainer", true):IsA("Frame") and game.CoreGui:FindFirstChild("TextBoxContainer", true) or nil
-        local messageBox = secondary and secondary:WaitForChild("TextBox"):IsA("TextBox") and secondary:WaitForChild("TextBox") or nil
-
-        messageBox.FocusLost:Connect(function(enterPressed)
-            local newMessage = messageBox.Text
-            if enterPressed then
-                messageBox.Text = ''
-
-                newMessage = string.gsub(newMessage, '.', function(char)
-                    return characters[char] or char
-                end)
-
-                local rbxGeneral = game.TextChatService:WaitForChild('TextChannels'):WaitForChild('RBXGeneral'):IsA("TextChannel") and game.TextChatService:WaitForChild('TextChannels'):WaitForChild('RBXGeneral') or nil
-
-                rbxGeneral:SendAsync(tostring(" ̌̌̌  ॓᳚॓ť" .. newMessage))
-            end
-        end)
-    elseif hook.isOld() == "Legacy" then
-        local localPlayer = players.LocalPlayer
-        local playerGui = localPlayer:WaitForChild('PlayerGui')
-
-        local chatBar = playerGui:WaitForChild('Chat'):WaitForChild('Frame'):WaitForChild('ChatBarParentFrame'):WaitForChild('Frame'):WaitForChild('BoxFrame'):WaitForChild('Frame'):WaitForChild('ChatBar'):IsA("TextBox") and playerGui:WaitForChild('Chat'):WaitForChild('Frame'):WaitForChild('ChatBarParentFrame'):WaitForChild('Frame'):WaitForChild('BoxFrame'):WaitForChild('Frame'):WaitForChild('ChatBar') or nil
-
-        local remote = game:GetService('ReplicatedStorage'):FindFirstChild('DefaultChatSystemChatEvents') and game:GetService('ReplicatedStorage'):FindFirstChild('DefaultChatSystemChatEvents'):FindFirstChild('SayMessageRequest'):IsA("RemoteEvent") and game:GetService('ReplicatedStorage'):FindFirstChild('DefaultChatSystemChatEvents'):FindFirstChild('SayMessageRequest') or nil
-
-        chatBar.FocusLost:Connect(function(enterPressed)
-            local newMessage = chatBar.Text
-
-            if enterPressed then
-                chatBar.Text = ''
-
-                newMessage = string.gsub(newMessage, '.', function(char)
-                    return characters[char] or char
-                end)
-
-                remote:FireServer(tostring(" ̌̌̌  ॓᳚॓ť" .. newMessage), 'All')
-            end
-        end)
-    end
-
-    print('Chat filtering has been disabled.')
-else
-    print('Chat filtering has been enabled.')
-    print('Normal messages will stop tagging after ~30 seconds.')
-end
-
-			end
-		})
 
 -- interface settings
 			InterfaceManager:SetLibrary(Fluent)
