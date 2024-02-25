@@ -238,7 +238,7 @@ local players = game.Players:GetPlayers()
 for i, player in ipairs(players) do
 	table.insert(names, player.Name)
 end
-	Spectate:SetValues(names)
+	Spectate:SetValue(names)
 
 	Spectate:OnChanged(function(Value)
 		if game.Players:FindFirstChild(Value) then
