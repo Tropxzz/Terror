@@ -186,12 +186,40 @@ Ingame:AddButton({
         Title = "Section 3",
 	Content = "This section contains  item Exploits"
 })
+--[[
 
-Ingame:AddButton({
-        Title = "Get armor",
-        Description = 'Free armor fr.',
-        Callback = function()
-              		local function GiveItem(Item)
+]]
+
+    local Weapons = Ingame:AddDropdown("Dropdown", {
+        Title = "Weapons",
+        Values = {"PitchFork"},
+        Multi = false,
+        Default = "PitchFork",
+})
+
+
+   Weapons:OnChanged(function(Value)
+	-- if the github account hello-n-bye steals this im suing 😎 HE FUCKING MADE THE 0 DOLLAR IDEA
+	local args = {
+    [1] = 3,
+    [2] = Value,
+    [3] = "Weapons",
+    [4] = "jopzllwastaken",
+    [6] = 0
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("Vending"):FireServer(unpack(args))
+    end)
+
+local Items = Ingame:AddDropdown("Items", {
+        Title = "Items",
+        Values = {"Gold Pizza"},
+        Multi = false,
+        Default = 1,
+})
+
+  Items:OnChanged(function(Value)
+ 		local function GiveItem(Item)
 			if Item == "Armor" then
 				Events:WaitForChild("Vending"):FireServer(3, "Armor2", "Armor", tostring(player), 1)
 			else
@@ -199,57 +227,20 @@ Ingame:AddButton({
 			end
 		end
 
-		GiveItem("Armor") -- rizz bros
-	end,
-})
+		GiveItem(Value)
+    end)
 
-Ingame:AddButton({
-        Title = "Get Golden Apple",
-        Description = 'Free GoldenApple fr.',
-        Callback = function()
-              		local function GiveItem(Item)
-			if Item == "Armor" then
-				Events:WaitForChild("Vending"):FireServer(3, "Armor2", "Armor", tostring(player), 1)
-			else
-				Events:WaitForChild("GiveTool"):FireServer(tostring(Item:gsub(" ", "")))
-			end
-		end
+local core = game:GetService("CoreGui")
+for _,v in ipairs(core:GetDescendants()) do
+if v.ClassName == "TextLabel" then
+if v.Text == "Weapons" or v.Text == "Items" then
+local newLabel = v.Parent.Parent.TextButton.TextLabel
+newLabel.Text = "Select One"
+end
+end
+end
 
-		GiveItem("Golden Apple") -- rizz bros
-	end,
-})
 
-Ingame:AddButton({
-        Title = "Get GOlden pizza",
-        Description = 'Free Health  fr.',
-        Callback = function()
-              		local function GiveItem(Item)
-			if Item == "Armor" then
-				Events:WaitForChild("Vending"):FireServer(3, "Armor2", "Armor", tostring(player), 1)
-			else
-				Events:WaitForChild("GiveTool"):FireServer(tostring(Item:gsub(" ", "")))
-			end
-		end
-
-		GiveItem("Gold Pizza")
-	end,
-})
-
-Ingame:AddButton({
-        Title = "Get PitchFork",
-        Description = 'we abouta sacrifice someone.',
-        Callback = function()
-              		local function GiveItem(Item)
-			if Item == "Armor" then
-				Events:WaitForChild("Vending"):FireServer(3, "Armor2", "Armor", tostring(player), 1)
-			else
-				Events:WaitForChild("GiveTool"):FireServer(tostring(Item:gsub(" ", "")))
-			end
-		end
-
-		GiveItem("Pitch Fork")
-	end,
-})
 
 -- settings
 
