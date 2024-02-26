@@ -194,7 +194,7 @@ Ingame:AddButton({
 		local function GiveItem(Item)
 			if Item == "Armor" then
 				Events:WaitForChild("Vending"):FireServer(3, "Armor2", "Armor", tostring(player), 1)
-			else
+			else	
 				Events:WaitForChild("GiveTool"):FireServer(tostring(Item:gsub(" ", "")))
 			end
 		end
@@ -211,24 +211,31 @@ end)
 
     local Weapons = Ingame:AddDropdown("Dropdown", {
         Title = "Weapons",
-        Values = {"PitchFork"},
+        Values = {},
         Multi = false,
-        Default = "PitchFork",
+        Default = "",
 })
 
+	for i,v in pairs(game.ReplicatedStorage.Vending.Weapons:GetDescendents()) do
+ if v:IsA("Model") then
+   table.insert(v.Name, Weapons.Values)
+end
 
    Weapons:OnChanged(function(Value)
 	-- if the github account hello-n-bye steals this im suing 😎 HE FUCKING MADE THE 0 DOLLAR IDEA
-	local args = {
+		local args = {
     [1] = 3,
     [2] = Value,
     [3] = "Weapons",
     [4] = "jopzllwastaken",
     [6] = 0
-}
+	}
 
 game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("Vending"):FireServer(unpack(args))
-    end)
+end)
+	
+	
+
 
 local Items = Ingame:AddDropdown("Items", {
         Title = "Items",
