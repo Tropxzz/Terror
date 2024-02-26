@@ -219,7 +219,8 @@ end)
 	for i,v in pairs(game.ReplicatedStorage.Vending.Weapons:GetDescendents()) do
  if v:IsA("Model") then
    table.insert(v.Name, Weapons.Values)
-end
+	end
+	end
 
    Weapons:OnChanged(function(Value)
 	-- if the github account hello-n-bye steals this im suing 😎 HE FUCKING MADE THE 0 DOLLAR IDEA
