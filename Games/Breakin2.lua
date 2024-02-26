@@ -213,7 +213,7 @@ game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("Vendin
 
 local Items = Ingame:AddDropdown("Items", {
         Title = "Items",
-        Values = {"Gold Pizza"},
+        Values = {"Gold Pizza", "Armor", "medkit"},
         Multi = false,
         Default = 1,
 })
