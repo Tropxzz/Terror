@@ -190,7 +190,7 @@ Ingame:AddButton({
   local pizzagoldyes = Ingame:AddToggle("Inf gold pizza fr", {Title = "freegoldpizza", Default = false })
 
     pizzagoldyes:OnChanged(function()
-	while true do
+	while pizzagoldyes.Value == true do
 		local function GiveItem(Item)
 			if Item == "Armor" then
 				Events:WaitForChild("Vending"):FireServer(3, "Armor2", "Armor", tostring(player), 1)
