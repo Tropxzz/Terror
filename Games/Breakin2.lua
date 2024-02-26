@@ -247,7 +247,7 @@ Ingame:AddButton({
 			end
 		end
 
-		GiveItem("PitchFork")
+		GiveItem("Pitch Fork")
 	end,
 })
 
@@ -257,3 +257,5 @@ Ingame:AddButton({
 InterfaceManager:BuildInterfaceSection(Settings)
 
 	Dialog.yellow("The Script Terror has loaded")
+
+
