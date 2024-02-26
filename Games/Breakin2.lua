@@ -204,7 +204,6 @@ Ingame:AddButton({
 	end
 end)
 
-
 --[[
 
 ]]
@@ -216,7 +215,7 @@ end)
         Default = "",
 })
 
-	for i,v in pairs(game.ReplicatedStorage.Vending.Weapons:GetDescendents()) do
+	for i,v in pairs(game.ReplicatedStorage.Vending.Weapons:GetDescendants()) do
  if v:IsA("Model") then
    table.insert(v.Name, Weapons.Values)
 	end
