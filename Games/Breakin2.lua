@@ -338,15 +338,14 @@ local Toggle = Ingame:AddToggle("MyToggle", {Title = "Outside Walk", Default = f
 game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("SetWalkAnim"):FireServer(unpack(args))
 end)
 
-local asdsad = Ingame:AddToggle("MyToggle", {Title = "Pancake Loop", Default = false })
 
-asdsad:OnChanged(function()
-	 while asdsad.Value == true do
-		game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("MakePancake"):FireServer()
-		wait(0.0000000001)
-	end
-    end)
-
+Ingame:AddButton({
+	Title = "Pancake",
+	Description = "mAKES U fat and thicc.",
+	Callback = function()
+				game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("MakePancake"):FireServer()
+	end,
+})
 
 -- settings
 
