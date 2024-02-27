@@ -355,15 +355,13 @@ Ingame:AddButton({
 	end,
 })
 
-local tt = Ingame:AddToggle("MyToggle", {Title = "No slip", Default = false })
-
-tt:OnChanged(function(v)
-	while tt.Value == true do
-		Events:WaitForChild("IceSlip"):FireServer(Vector3.new(0, 0, 0))
-		wait(1000)
-	end
-end)
-
+Ingame:AddButton({
+	Title = "No Slipping",
+	Description = "bye slipping.",
+	Callback = function()
+						Events:WaitForChild("IceSlip"):Destroy()
+	end,
+})
 
 -- settings
 
