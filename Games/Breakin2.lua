@@ -216,9 +216,7 @@ end)
 })
 
 if game.PlaceId == 13864667823 then
-    if not Weapons.Values then
-        Weapons.Values = {}
-    end
+    Weapons.Values = Weapons.Values or {}
 
     for _, v in pairs(game.ReplicatedStorage.Vending.Weapons:GetDescendants()) do
         if v:IsA("Model") then
@@ -226,6 +224,7 @@ if game.PlaceId == 13864667823 then
         end
     end
 end
+
 
 
    Weapons:OnChanged(function(Value)
