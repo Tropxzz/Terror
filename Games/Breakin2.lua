@@ -220,7 +220,7 @@ if game.PlaceId == 13864667823 then
 
     for _, v in pairs(game.ReplicatedStorage.Vending.Weapons:GetDescendants()) do
         if v:IsA("Model") then
-            table.insert(Weapons.Values, v.Name)
+            table.insert(v.Name, Weapons.Value)
 		end
     end
 end
