@@ -321,6 +321,21 @@ local Drinks = Ingame:AddDropdown("Drinks	", {
 game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("Vending"):FireServer(unpack(args))
 end)
 
+   Ingame:AddParagraph({
+        Title = "Section 4",
+	Content = "Random stuff since im lazy to do sections"
+})
+
+local Toggle = Ingame:AddToggle("MyToggle", {Title = "Outside Walk", Default = false })
+
+    Toggle:OnChanged(function(v)
+        local args = {
+    [1] = Toggle.Value
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("SetWalkAnim"):FireServer(unpack(args))
+    end)
+
+
 -- settings
 
 	InterfaceManager:SetLibrary(Fluent)
