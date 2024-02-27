@@ -279,13 +279,13 @@ local Food = Ingame:AddDropdown("Food	", {
 
    Food:OnChanged(function(Value)
 	-- if the github account hello-n-bye steals this im suing 😎 HE FUCKING MADE THE 0 DOLLAR IDEA
-	local args = {
+		local args = {
     [1] = 1,
     [2] = Value,
     [3] = "Food",
     [4] = player.Name,
     [6] = 0
-}
+	}
 
 game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("Vending"):FireServer(unpack(args))
 end)
@@ -310,13 +310,13 @@ local Drinks = Ingame:AddDropdown("Drinks	", {
 
    Drinks:OnChanged(function(Value)
 	-- if the github account hello-n-bye steals this im suing 😎 HE FUCKING MADE THE 0 DOLLAR IDEA
-	local args = {
+		local args = {
     [1] = 2,
     [2] = Value,
     [3] = "Drinks",
     [4] = player.Name,
     [6] = 0
-}
+	}
 
 game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("Vending"):FireServer(unpack(args))
 end)
