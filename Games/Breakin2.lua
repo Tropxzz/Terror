@@ -4,6 +4,7 @@ local Dialog = loadstring(game:HttpGet("https://raw.githubusercontent.com/Tropxz
 local Events = game:GetService("ReplicatedStorage"):WaitForChild("Events")
 
 local player = game.Players.LocalPlayer
+_G.FreeHealthenabled = false
 
 local Window = Fluent:CreateWindow({
 		Title = "Terror 1.0 - Break in 2",
@@ -189,7 +190,9 @@ Ingame:AddButton({
 
   local pizzagoldyes = Ingame:AddToggle("Inf gold pizza fr", {Title = "freegoldpizza", Default = false })
 
-    pizzagoldyes:OnChanged(function()
+pizzagoldyes:OnChanged(function()
+		_G.FreeHealthenabled = pizzagoldyes.Value 
+
 	while pizzagoldyes.Value == true do
 		local function GiveItem(Item)
 			if Item == "Armor" then
@@ -333,6 +336,16 @@ local Toggle = Ingame:AddToggle("MyToggle", {Title = "Outside Walk", Default = f
     [1] = Toggle.Value
 }
 game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("SetWalkAnim"):FireServer(unpack(args))
+end)
+
+local asdsad = Ingame:AddToggle("MyToggle", {Title = "Pancake Loop", Default = false })
+
+asdsad:OnChanged(function(v)
+	v = Toggle.Value
+	while v == true do
+		game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("MakePancake"):FireServer()
+		wait(1)
+	end
     end)
 
 
