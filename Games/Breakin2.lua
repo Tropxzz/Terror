@@ -208,20 +208,23 @@ end)
 
 ]]
 
+local a = {}
+
+if game.PlaceId == 13864667823  then
+	for _, v in pairs(game.ReplicatedStorage.Vending.Weapons:GetChildren()) do
+        if v:IsA("Model") then
+            table.insert(a, v.name)
+        end
+    end
+end
+
 local Weapons = Ingame:AddDropdown("Dropdown", {
     Title = "Weapons",
-    Values = {},
+    Values = a,
     Multi = false,
     Default = "",
 })
 
-if game.PlaceId == 13864667823 then
-    for _, v in pairs(game.ReplicatedStorage.Vending.Weapons:GetChildren()) do
-        if v:IsA("Model") then
-            table.insert(Weapons.Values, v.Name)
-        end
-    end
-end
 
 
 
@@ -231,7 +234,7 @@ end
     [1] = 3,
     [2] = Value,
     [3] = "Weapons",
-    [4] = "jopzllwastaken",
+    [4] = player.Name,
     [6] = 0
 	}
 
