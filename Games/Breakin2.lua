@@ -340,11 +340,10 @@ end)
 
 local asdsad = Ingame:AddToggle("MyToggle", {Title = "Pancake Loop", Default = false })
 
-asdsad:OnChanged(function(v)
-	v = asdsad.Value
-	 while v == true do
+asdsad:OnChanged(function()
+	 while asdsad.Value == true do
 		game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("MakePancake"):FireServer()
-		wait(1)
+		wait(0.0000000001)
 	end
     end)
 
