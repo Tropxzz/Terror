@@ -262,16 +262,6 @@ local Items = Ingame:AddDropdown("Items", {
 		GiveItem(Value)
     end)
 
-local core = game:GetService("CoreGui")
-for _,v in ipairs(core:GetDescendants()) do
-if v.ClassName == "TextLabel" then
-if v.Text == "Weapons" or v.Text == "Items" then
-local newLabel = v.Parent.Parent.TextButton.TextLabel
-newLabel.Text = "Select One"
-end
-end
-end
-
 
 
 -- settings
