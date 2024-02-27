@@ -208,21 +208,18 @@ end)
 
 ]]
 
-    local Weapons = Ingame:AddDropdown("Dropdown", {
-        Title = "Weapons",
-        Values = {},
-        Multi = false,
-        Default = "",
+local Weapons = Ingame:AddDropdown("Dropdown", {
+    Title = "Weapons",
+    Values = {},
+    Multi = false,
+    Default = "",
 })
 
 if game.PlaceId == 13864667823 then
-    
-
-
-    for _, v in pairs(game.ReplicatedStorage.Vending.Weapons:GetDescendants()) do
+    for _, v in pairs(game.ReplicatedStorage.Vending.Weapons:GetChildren()) do
         if v:IsA("Model") then
-            table.insert(v, Weapons.Value)
-		end
+            table.insert(Weapons.Values, v.Name)
+        end
     end
 end
 
