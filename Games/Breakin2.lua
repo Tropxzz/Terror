@@ -280,11 +280,10 @@ local Food = Ingame:AddDropdown("Food	", {
    Food:OnChanged(function(Value)
 	-- if the github account hello-n-bye steals this im suing 😎 HE FUCKING MADE THE 0 DOLLAR IDEA
 	local args = {
-    [1] = 3,
+    [1] = 1,
     [2] = Value,
     [3] = "Food",
     [4] = player.Name,
-    [5] = true,
     [6] = 0
 }
 
@@ -316,7 +315,6 @@ local Drinks = Ingame:AddDropdown("Drinks	", {
     [2] = Value,
     [3] = "Drinks",
     [4] = player.Name,
-    [5] = true,
     [6] = 0
 }
 
