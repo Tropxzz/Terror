@@ -214,12 +214,14 @@ end)
         Multi = false,
         Default = "",
 })
-
-	for i,v in pairs(game.ReplicatedStorage.Vending.Weapons:GetDescendants()) do
+if game.PlaceId == 13864667823 then
+		for i,v in pairs(game.ReplicatedStorage.Vending.Weapons:GetDescendants()) do
  if v:IsA("Model") then
    table.insert(v.Name, Weapons.Values)
 	end
 	end
+end
+
 
    Weapons:OnChanged(function(Value)
 	-- if the github account hello-n-bye steals this im suing 😎 HE FUCKING MADE THE 0 DOLLAR IDEA
@@ -234,7 +236,7 @@ end)
 game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("Vending"):FireServer(unpack(args))
 end)
 	
-	
+	 
 
 
 local Items = Ingame:AddDropdown("Items", {
