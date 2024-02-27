@@ -207,13 +207,12 @@ end)
 --[[
 
 ]]
-
 local a = {}
 
 if game.PlaceId == 13864667823  then
-	for _, v in pairs(game.ReplicatedStorage.Vending.Weapons:GetChildren()) do
+	for _, v in pairs(game.ReplicatedStorage.Vending.Weapons:GetDescendants()) do
         if v:IsA("Model") then
-            table.insert(a, v.name)
+            table.insert(a, v.Name)
         end
     end
 end
