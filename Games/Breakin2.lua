@@ -248,7 +248,7 @@ end)
 
 local Items = Ingame:AddDropdown("Items", {
         Title = "Items",
-        Values = {"Gold Pizza", "Armor", "MedKit", "Gold Apple"},
+        Values = {"Gold Pizza", "Armor", "MedKit", "Golden Apple"},
         Multi = false,
         Default = "",
 })
