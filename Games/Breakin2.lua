@@ -260,6 +260,15 @@ local Items = Ingame:AddDropdown("Items", {
 end)
 local b = {}
 
+if game.PlaceId == 13864667823  then
+	for _, v in pairs(game.ReplicatedStorage.Vending.Food:GetDescendants()) do
+        if v:IsA("Model") then
+            table.insert(b, v.Name)
+        end
+    end
+end
+	
+
 local Food = Ingame:AddDropdown("Food	", {
         Title = "Food",
         Values = b,
@@ -279,15 +288,7 @@ local Food = Ingame:AddDropdown("Food	", {
 
 game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("Vending"):FireServer(unpack(args))
 end)
-	
-if game.PlaceId == 13864667823  then
-	for _, v in pairs(game.ReplicatedStorage.Vending.Food:GetDescendants()) do
-        if v:IsA("Model") then
-            table.insert(b, v.Name)
-        end
-    end
-end
-	
+
 
 
 
