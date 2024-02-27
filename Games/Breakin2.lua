@@ -245,22 +245,48 @@ end)
 
 local Items = Ingame:AddDropdown("Items", {
         Title = "Items",
-        Values = {"Gold Pizza", "Armor", "MedKit"},
+        Values = {"Gold Pizza", "Armor", "MedKit", "Gold Apple"},
         Multi = false,
         Default = 1,
 })
-
   Items:OnChanged(function(Value)
- 		local function GiveItem(Item)
+		local function GiveItem(Item)
 			if Item == "Armor" then
 				Events:WaitForChild("Vending"):FireServer(3, "Armor2", "Armor", tostring(player), 1)
 			else
 				Events:WaitForChild("GiveTool"):FireServer(tostring(Item:gsub(" ", "")))
 			end
-		end
+	end
+end)
 
-		GiveItem(Value)
-    end)
+local Food = Ingame:AddDropdown("Food	", {
+        Title = "Food",
+        Values = {},
+        Multi = false,
+        Default = 1,
+})
+
+   Food:OnChanged(function(Value)
+	-- if the github account hello-n-bye steals this im suing 😎 HE FUCKING MADE THE 0 DOLLAR IDEA
+		local args = {
+    [1] = 1,
+    [2] = Value,
+    [3] = "Food",
+    [4] = player.Name,
+    [6] = 0
+	}
+
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("Vending"):FireServer(unpack(args))
+end)
+
+if game.PlaceId == 13864667823  then
+	for _, v in pairs(game.ReplicatedStorage.Vending.Food:GetDescendants()) do
+        if v:IsA("Model") then
+            table.insert(a, v.Name)
+        end
+    end
+end
+	
 
 
 
