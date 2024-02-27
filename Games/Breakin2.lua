@@ -257,6 +257,7 @@ local Items = Ingame:AddDropdown("Items", {
 				Events:WaitForChild("GiveTool"):FireServer(tostring(Item:gsub(" ", "")))
 			end
 	end
+	GiveItem(Value)
 end)
 local b = {}
 
@@ -278,19 +279,49 @@ local Food = Ingame:AddDropdown("Food	", {
 
    Food:OnChanged(function(Value)
 	-- if the github account hello-n-bye steals this im suing 😎 HE FUCKING MADE THE 0 DOLLAR IDEA
-		local args = {
-    [1] = 1,
+	local args = {
+    [1] = 3,
     [2] = Value,
     [3] = "Food",
     [4] = player.Name,
+    [5] = true,
     [6] = 0
-	}
+}
 
 game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("Vending"):FireServer(unpack(args))
 end)
 
+local c = {}
 
+if game.PlaceId == 13864667823  then
+	for _, v in pairs(game.ReplicatedStorage.Vending.Drinks:GetDescendants()) do
+        if v:IsA("Model") then
+            table.insert(c, v.Name)
+        end
+    end
+end
+	
 
+local Drinks = Ingame:AddDropdown("Drinks	", {
+        Title = "Drinks",
+        Values = c,
+        Multi = false,
+        Default = "",
+})
+
+   Drinks:OnChanged(function(Value)
+	-- if the github account hello-n-bye steals this im suing 😎 HE FUCKING MADE THE 0 DOLLAR IDEA
+	local args = {
+    [1] = 2,
+    [2] = Value,
+    [3] = "Drinks",
+    [4] = player.Name,
+    [5] = true,
+    [6] = 0
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("Vending"):FireServer(unpack(args))
+end)
 
 -- settings
 
