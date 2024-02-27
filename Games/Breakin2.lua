@@ -347,11 +347,27 @@ Ingame:AddButton({
 	end,
 })
 
+Ingame:AddButton({
+	Title = "Remove hail",
+	Description = "bye hail.",
+	Callback = function()
+				game.Workspace.Hails:Destroy()
+	end,
+})
+
+local tt = Ingame:AddToggle("MyToggle", {Title = "No slip", Default = false })
+
+tt:OnChanged(function(v)
+	while tt.Value == true do
+		Events:WaitForChild("IceSlip"):FireServer(Vector3.new(0, 0, 0))
+		wait(0.001)
+	end
+end)
+
+
 -- settings
 
 	InterfaceManager:SetLibrary(Fluent)
 InterfaceManager:BuildInterfaceSection(Settings)
 
 	Dialog.yellow("The Script Terror has loaded")
-
-
