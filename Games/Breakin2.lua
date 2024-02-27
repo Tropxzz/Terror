@@ -214,12 +214,17 @@ end)
         Multi = false,
         Default = "",
 })
+
 if game.PlaceId == 13864667823 then
-		for i,v in pairs(game.ReplicatedStorage.Vending.Weapons:GetDescendants()) do
- if v:IsA("Model") then
-   table.insert(Weapons.Values, v.Name)
-	end
-	end
+    if not Weapons.Values then
+        Weapons.Values = {}
+    end
+
+    for _, v in pairs(game.ReplicatedStorage.Vending.Weapons:GetDescendants()) do
+        if v:IsA("Model") then
+            table.insert(Weapons.Values, v.Name)
+        end
+    end
 end
 
 
