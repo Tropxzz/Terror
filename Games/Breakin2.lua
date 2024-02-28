@@ -285,7 +285,7 @@ local ohString3 = "Food"
 local ohString4 = player.Name
 local ohNumber6 = 0
 
-game:GetService("ReplicatedStorage").Events.Vending:FireServer(ohNumber1, ohString2, ohString3, ohString4, ohNil5, ohNumber6)
+game:GetService("ReplicatedStorage").Events.Vending:FireServer(ohNumber1, ohString2, ohString3, ohString4, ohNumber6)
 end)
 
 local c = {}
