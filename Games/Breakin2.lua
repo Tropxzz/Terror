@@ -17,7 +17,12 @@ local Window = Fluent:CreateWindow({
 })
 
 local Lobby = Window:AddTab({ Title = "Lobby", Icon = "egg" })
-local Ingame = Window:AddTab({ Title = "Ingame", Icon = "egg" })
+local Trolling = Window:AddTab({ Title = "Trolling", Icon = "angry" })
+local Items = Window:AddTab({ Title = "Items", Icon = "hammer" })
+local NPC = Window:AddTab({ Title = "NPCS", Icon = "users" })
+local Buffs = Window:AddTab({ Title = "Buffs", Icon = "hand-metal" })
+local Randomstuff = Window:AddTab({ Title = "RandomShit", Icon = "help-circle" })
+local Plrr = Window:AddTab({ Title = "Player", Icon = "user" })
 local Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
 
 function TeleportTo(c)
@@ -61,13 +66,7 @@ Lobby:AddButton({
 
 
 -- Ingame
-
-   Ingame:AddParagraph({
-        Title = "Section 1",
-	Content = "This section contains Speed/Strength Exploits"
-})
-
-Ingame:AddButton({
+Buffs:AddButton({
         Title = "Max Speed",
         Description = 'Maxes out your speed.',
         Callback = function()
@@ -86,7 +85,7 @@ Ingame:AddButton({
 
 
 
-Ingame:AddButton({
+Buffs:AddButton({
         Title = "Max Strength",
         Description = 'Maxes out ur strength.',
         Callback = function()
@@ -103,7 +102,7 @@ Ingame:AddButton({
 	end,
 })
 
-Ingame:AddButton({
+Buffs:AddButton({
         Title = "+1 Strength",
         Description = 'Adds one strength point.',
         Callback = function()
@@ -114,7 +113,7 @@ Ingame:AddButton({
 	end,
 })
 
-Ingame:AddButton({
+Buffs:AddButton({
         Title = "+1 Speed",
         Description = 'Adds one Speed point.',
         Callback = function()
@@ -125,12 +124,7 @@ Ingame:AddButton({
 	end,
 })
 
-   Ingame:AddParagraph({
-        Title = "Section 2",
-	Content = "This section contains  NPC Exploits"
-})
-
-Ingame:AddButton({
+NPC:AddButton({
 	Title = "Get all NPCS",
 	Description = "gets all npcs.",
 	Callback = function()
@@ -183,12 +177,92 @@ Ingame:AddButton({
 	end,
 })
 
-   Ingame:AddParagraph({
-        Title = "Section 3",
-	Content = "This section contains  item Exploits"
+NPC:AddButton({
+	Title = "Get dog",
+	Description = "gets wtv the dog is called.",
+	Callback = function()
+		
+				local function GiveItem(Item)
+			if Item == "Armor" then
+				Events:WaitForChild("Vending"):FireServer(3, "Armor2", "Armor", tostring(game.Players.LocalPlayer), 1)
+			else
+				Events:WaitForChild("GiveTool"):FireServer(tostring(Item:gsub(" ", "")))
+			end
+		end
+		
+		
+				local function GetDog()
+			for i, v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.Assets.Note.Note.Note:GetChildren()) do
+				if v.Name:match("Circle") and v.Visible == true then
+					GiveItem(tostring(v.Name:gsub("Circle", "")))
+					task.wait(.1)
+					player.Backpack:WaitForChild(tostring(v.Name:gsub("Circle", ""))).Parent = player.Character
+					TeleportTo(CFrame.new(-257.56839, 29.4499969, -910.452637, -0.238445505, 7.71292363e-09, 0.971155882, 1.2913591e-10, 1, -7.91029819e-09, -0.971155882, -1.76076387e-09, -0.238445505))
+					task.wait(.5)
+					Events:WaitForChild("CatFed"):FireServer(tostring(v.Name:gsub("Circle", "")))
+				end
+			end
+			task.wait(2)
+			for i = 1, 3 do
+				TeleportTo(CFrame.new(-203.533081, 30.4500484, -790.901428, -0.0148558766, 8.85941187e-09, -0.999889672, 2.65695732e-08, 1, 8.46563175e-09, 0.999889672, -2.64408779e-08, -0.0148558766) + Vector3.new(0, 5, 0))
+				task.wait(.1)
+			end
+		end
+		GetDog()
+	end,
 })
 
-  local pizzagoldyes = Ingame:AddToggle("Inf gold pizza fr", {Title = "freegoldpizza", Default = false })
+NPC:AddButton({
+	Title = "Get Agent",
+	Description = "gets the agent.",
+	Callback = function()
+		
+				local function GiveItem(Item)
+			if Item == "Armor" then
+				Events:WaitForChild("Vending"):FireServer(3, "Armor2", "Armor", tostring(game.Players.LocalPlayer), 1)
+			else
+				Events:WaitForChild("GiveTool"):FireServer(tostring(Item:gsub(" ", "")))
+			end
+		end
+		
+				local function GetAgent()
+			GiveItem("Louise")
+			task.wait(.1)
+			player.Backpack:WaitForChild("Louise").Parent = player.Character
+			Events:WaitForChild("LouiseGive"):FireServer(2)
+		end	
+			
+		GetAgent()
+	end,
+})
+
+NPC:AddButton({
+	Title = "Get Uncle Pete",
+	Description = "gets Uncle pete the rich dude.",
+	Callback = function()
+		
+				local function GiveItem(Item)
+			if Item == "Armor" then
+				Events:WaitForChild("Vending"):FireServer(3, "Armor2", "Armor", tostring(game.Players.LocalPlayer), 1)
+			else
+				Events:WaitForChild("GiveTool"):FireServer(tostring(Item:gsub(" ", "")))
+			end
+		end
+		
+			local function GetUncle()
+			GiveItem("Key")
+			task.wait(.1)
+			player.Backpack:WaitForChild("Key").Parent = player.Character
+			wait(.5)
+			Events.KeyEvent:FireServer()
+		end
+			
+		GetUncle()
+	end,
+})
+
+
+  local pizzagoldyes = Items:AddToggle("Inf gold pizza fr", {Title = "freegoldpizza", Default = false })
 
 pizzagoldyes:OnChanged(function()
 		_G.FreeHealthenabled = pizzagoldyes.Value 
@@ -220,7 +294,7 @@ if game.PlaceId == 13864667823  then
     end
 end
 
-local Weapons = Ingame:AddDropdown("Dropdown", {
+local Weapons = Items:AddDropdown("Dropdown", {
     Title = "Weapons",
     Values = a,
     Multi = false,
@@ -243,7 +317,7 @@ local Weapons = Ingame:AddDropdown("Dropdown", {
 game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("Vending"):FireServer(unpack(args))
 end)
 
-local Items = Ingame:AddDropdown("Items", {
+local Items = Items:AddDropdown("Items", {
         Title = "Items",
         Values = {"Gold Pizza", "Armor", "MedKit", "Golden Apple"},
         Multi = false,
@@ -270,14 +344,14 @@ if game.PlaceId == 13864667823  then
 end
 	
 
-local Food = Ingame:AddDropdown("Food	", {
+local Food = Items:AddDropdown("Food	", {
         Title = "Food",
         Values = b,
         Multi = false,
         Default = "",
 })
 
-   Food:OnChanged(function(Value)
+   Food	:OnChanged(function(Value)
 	-- if the github account hello-n-bye steals this im suing 😎 HE FUCKING MADE THE 0 DOLLAR IDEA
 local ohNumber1 = 3
 local ohString2 = Value
@@ -299,7 +373,7 @@ if game.PlaceId == 13864667823  then
 end
 	
 
-local Drinks = Ingame:AddDropdown("Drinks	", {
+local Drinks = Items:AddDropdown("Drinks	", {
         Title = "Drinks",
         Values = c,
         Multi = false,
@@ -317,12 +391,7 @@ local ohNumber6 = 0
 game:GetService("ReplicatedStorage").Events.Vending:FireServer(ohNumber1, ohString2, ohString3, ohString4, ohNumber6)
 end)
 
-   Ingame:AddParagraph({
-        Title = "Section 4",
-	Content = "Random stuff since im lazy to do sections"
-})
-
-local Toggle = Ingame:AddToggle("MyToggle", {Title = "Outside Walk", Default = false })
+local Toggle = Randomstuff:AddToggle("MyToggle", {Title = "Outside Walk", Default = false })
 
     Toggle:OnChanged(function(v)
         local args = {
@@ -334,7 +403,7 @@ end)
 -- This script was generated by Hydroxide's RemoteSpy: https://github.com/Upbolt/Hydroxide
 
 
-Ingame:AddButton({
+Trolling:AddButton({
 	Title = "Pancake",
 	Description = "mAKES U fat and thicc.",
 	Callback = function()
@@ -342,7 +411,7 @@ Ingame:AddButton({
 	end,
 })
 
-Ingame:AddButton({
+Randomstuff:AddButton({
 	Title = "Remove hail",
 	Description = "bye hail.",
 	Callback = function()
@@ -350,7 +419,7 @@ Ingame:AddButton({
 	end,
 })
 
-Ingame:AddButton({
+Randomstuff:AddButton({
 	Title = "No Slipping",
 	Description = "bye slipping.",
 	Callback = function()
@@ -358,7 +427,7 @@ Ingame:AddButton({
 	end,
 })
 
-Ingame:AddButton({
+Randomstuff:AddButton({
 	Title = "Get outside items",
 	Description = "Pizza and drinks .",
 	Callback = function()
