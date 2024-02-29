@@ -317,13 +317,13 @@ local Weapons = Items:AddDropdown("Dropdown", {
 game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("Vending"):FireServer(unpack(args))
 end)
 
-local Items = Items:AddDropdown("Items", {
+local Item1s = Items:AddDropdown("Items", {
         Title = "Items",
         Values = {"Gold Pizza", "Armor", "MedKit", "Golden Apple"},
         Multi = false,
         Default = "",
 })
-  Items:OnChanged(function(Value)
+  Item1s:OnChanged(function(Value)
 		local function GiveItem(Item)
 			if Item == "Armor" then
 				Events:WaitForChild("Vending"):FireServer(3, "Armor2", "Armor", tostring(player), 1)
