@@ -351,7 +351,7 @@ local Food = Items:AddDropdown("Food	", {
         Default = "",
 })
 
-   Food	:OnChanged(function(Value)
+   Food:OnChanged(function(Value)
 	-- if the github account hello-n-bye steals this im suing 😎 HE FUCKING MADE THE 0 DOLLAR IDEA
 local ohNumber1 = 3
 local ohString2 = Value
