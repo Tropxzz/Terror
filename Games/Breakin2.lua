@@ -503,4 +503,4 @@ Money:AddButton({
 InterfaceManager:BuildInterfaceSection(Settings)
 
 	Dialog.yellow("The Script Terror has loaded")
- 
+
