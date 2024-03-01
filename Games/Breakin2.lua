@@ -22,6 +22,7 @@ local Items = Window:AddTab({ Title = "Items", Icon = "hammer" })
 local NPC = Window:AddTab({ Title = "NPCS", Icon = "users" })
 local Buffs = Window:AddTab({ Title = "Buffs", Icon = "hand-metal" })
 local Randomstuff = Window:AddTab({ Title = "RandomShit", Icon = "help-circle" })
+local Money = Window:AddTab({ Title = "Money", Icon = "piggy-bank" })
 local Plrr = Window:AddTab({ Title = "Player", Icon = "user" })
 local Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
 
@@ -454,6 +455,47 @@ wait(1)
 player.Character.HumanoidRootPart.CFrame = CFrame.new(-206.448456, 30.4567528, -789.332031, 0.151315138, 3.55166598e-08, 0.988485575, -2.40290987e-09, 1, -3.55625467e-08, -0.988485575, 3.00590974e-09, 0.151315138)
 	end,
 })
+
+-- player
+
+ 
+   Plrr:AddSlider("Slider", {
+        Title = "Speed",
+        Description = "Speeds you up",
+        Default = 2,
+        Min = 0,
+        Max = 5,
+        Rounding = 1,
+        Callback = function(Value)
+            player.Character.Humanoid.WalkSpeed = Value
+        end
+    })
+
+-- money
+
+Money:AddButton({
+	Title = "Pickup all dollars",
+	Description = "Pickup all the cash on the floor. made by headlined",
+	Callback = function()
+			 local old = player.Character.HumanoidRootPart.CFrame
+
+            for _,v in ipairs(workspace:GetChildren()) do
+                if (v.Name) == "Money3" then
+                    player.Character.HumanoidRootPart.CFrame = v.CFrame + Vector3.new(0, 5, 0)
+                    task.wait(0.15)
+                end
+            end
+
+            player.Character.HumanoidRootPart.CFrame = old
+
+            for _,v in ipairs(workspace:GetChildren()) do
+                if (v.Name) == "Money3" then
+                    v:Destroy()
+                end
+            end
+	end,
+})
+
 
 -- settings
 
