@@ -462,9 +462,9 @@ player.Character.HumanoidRootPart.CFrame = CFrame.new(-206.448456, 30.4567528, -
    Plrr:AddSlider("Slider", {
         Title = "Speed",
         Description = "Speeds you up",
-        Default = 2,
-        Min = 0,
-        Max = 5,
+        Default = 16,
+        Min = 16,
+        Max = 250,
         Rounding = 1,
         Callback = function(Value)
             player.Character.Humanoid.WalkSpeed = Value
