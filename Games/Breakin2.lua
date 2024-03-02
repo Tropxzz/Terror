@@ -511,7 +511,7 @@ for i, v in pairs(badguys:GetDescendants()) do
             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame
             local virtualUser = game:GetService("VirtualUser")
             virtualUser:CaptureController()
-            virtualUser:ClickButton1(Vector2.new())
+            virtualUser:ClickButton1(Vector2.new(0.458, 0,0.437, 0))
         end
 		end
 		wait(0.0000000001)
