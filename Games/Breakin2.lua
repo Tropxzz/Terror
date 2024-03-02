@@ -64,6 +64,13 @@ Lobby:AddButton({
         end
     })
 
+Lobby:AddButton({
+        Title = "SoloGame",
+        Description = "teleports u ingame with no players",
+        Callback = function()
+                      game["Teleport Service"]:Teleport(13864667823, player)
+        end
+    })
 
 
 -- Ingame
