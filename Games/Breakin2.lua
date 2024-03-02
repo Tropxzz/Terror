@@ -502,9 +502,8 @@ asdasd:OnChanged(function()
 	
 	if Toggle.Value == true then
 		player.Character.HumanoidRootPart.CFrame = CFrame.new(-265.661835, 62.711586, -726.972473, -0.370746523, -0.00020653024, 0.928734064, 3.07532682e-05, 1, 0.000234654784, -0.928734124, 0.000115559051, -0.370746493)
-	end
-	
-	while asdasd.Value == true do
+		
+		while asdasd.Value == true do
 		local badguys = game.Workspace.BadGuys
 for i, v in pairs(badguys:GetDescendants()) do
     if v:IsA("Model") and v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") then
@@ -515,7 +514,11 @@ for i, v in pairs(badguys:GetDescendants()) do
         end
 		end
 		wait(0.0000000001)
-end
+		end
+		
+	end
+	
+	
     end)
 
 
