@@ -496,6 +496,23 @@ Money:AddButton({
 	end,
 })
 
+  local Toggle = Money:AddToggle("Auto Farm", {Title = "Auto Farm", Default = false })
+
+    Toggle:OnChanged(function()
+	while Toggle.Value == true do
+		local badguys = game.Workspace.BadGuys
+for i, v in pairs(badguys:GetDescendants()) do
+    if v:IsA("Model") and v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") then
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame
+            local virtualUser = game:GetService("VirtualUser")
+            virtualUser:CaptureController()
+            virtualUser:ClickButton1(Vector2.new())
+        end
+		end
+		wait(0.0000000001)
+end
+    end)
+
 
 -- settings
 
