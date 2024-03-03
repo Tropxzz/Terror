@@ -598,7 +598,7 @@ local function get()
 end
 
 
-  local BetterFarm = Money:AddToggle("Auto Farm", {Title = "Auto Farm", Default = false })
+  local BetterFarm = Money:AddToggle("Auto Farm", {Title = "Better Auto Farm", Default = false })
 
 local combatZone = game:GetService("Workspace"):FindFirstChild("EvilArea"):FindFirstChild("Rug"):FindFirstChild("PartTex")
 local badGuys = workspace:FindFirstChild("BadGuys")
@@ -607,7 +607,7 @@ local badGuys = workspace:FindFirstChild("BadGuys")
     BetterFarm:OnChanged(function()
   local value = BetterFarm.Value
 	
-        if (value) then
+        if BetterFarm.Value == true then
             if not (oldPos_Farming) then
                 oldPos_Farming = player.Character.HumanoidRootPart.CFrame
             end
@@ -616,7 +616,7 @@ local badGuys = workspace:FindFirstChild("BadGuys")
 
             task.wait(0.8)
             
-            while (value) do
+            while BetterFarm.Value == true do
                 if (get() == "The Nerd") or (get() == "The Hyper") or (get() == "The Sporty") then
                     tween(combatZone.CFrame + Vector3.new(0, 2.4, 0))
                 else
