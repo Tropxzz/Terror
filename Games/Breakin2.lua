@@ -598,7 +598,7 @@ local function get()
 end
 
 
-  local BetterFarm = Money:AddToggle("Auto Farm", {Title = "Better Auto Farm", Default = false })
+  local BetterFarm = Money:AddToggle("Auto Farm", {Title = "Better Auto Farm (Manually click)", Default = false })
 
 local combatZone = game:GetService("Workspace"):FindFirstChild("EvilArea"):FindFirstChild("Rug"):FindFirstChild("PartTex")
 local badGuys = workspace:FindFirstChild("BadGuys")
