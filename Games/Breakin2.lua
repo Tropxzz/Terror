@@ -531,6 +531,9 @@ Money:AddButton({
  local sadasdsadsadas = Money:AddToggle("Bring Enimes", {Title = "Bring badguys By Breaking BLitz", Default = false })
 
 sadasdsadsadas:OnChanged(function()		
+		
+	
+	if sadasdsadsadas.Value == true then
 		local function BringAllEnemies()
 		pcall(function()
 			for i, v in pairs(game:GetService("Workspace").BadGuys:GetChildren()) do
@@ -548,8 +551,6 @@ sadasdsadsadas:OnChanged(function()
 			end
 		end)
 	end
-	
-	if sadasdsadsadas.Value == true then
 						BringAllEnemies()
 wait(0.0001)
 		end
