@@ -631,7 +631,7 @@ local badGuys = workspace:FindFirstChild("BadGuys")
 							newRoot.CFrame = CFrame.new(player.Character.HumanoidRootPart.Position + Vector3.new(0, 5, 0))
 							 local virtualUser = game:GetService("VirtualUser")
             virtualUser:CaptureController()
-            virtualUser:ClickButton1(Vector2.new(0,0))
+            virtualUser:ClickButton1(Vector2.new(0.458, 0,0.437, 0))
                             else
                                 newRoot.CFrame = CFrame.new(player.Character.HumanoidRootPart.Position + Vector3.new(0, 6, 0))
                             end
@@ -643,7 +643,7 @@ local badGuys = workspace:FindFirstChild("BadGuys")
             end
         else
             if (oldPos_Farming) == nil then
-                print("Starry whaled approchaing false error! 🐋")
+                print("ERROR")
             else
                 task.wait(0.5)
 
