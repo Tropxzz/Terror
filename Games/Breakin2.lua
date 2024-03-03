@@ -628,12 +628,16 @@ local badGuys = workspace:FindFirstChild("BadGuys")
                         local newRoot = v:FindFirstChild("HumanoidRootPart")
                         if (newRoot) then
                             if (get() == "The Nerd") or (get() == "The Hyper") or (get() == "The Sporty") then
-                                newRoot.CFrame = CFrame.new(player.Character.HumanoidRootPart.Position + Vector3.new(0, 5, 0))
+							newRoot.CFrame = CFrame.new(player.Character.HumanoidRootPart.Position + Vector3.new(0, 5, 0))
+							 local virtualUser = game:GetService("VirtualUser")
+            virtualUser:CaptureController()
+            virtualUser:ClickButton1(Vector2.new(0,0))
                             else
                                 newRoot.CFrame = CFrame.new(player.Character.HumanoidRootPart.Position + Vector3.new(0, 6, 0))
                             end
                         end
-                    end
+				end
+				
                 end
                 task.wait()
             end
