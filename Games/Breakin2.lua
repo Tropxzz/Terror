@@ -528,7 +528,8 @@ Money:AddButton({
 	end,
 })
 
- local sadasdsadsadas = Money:AddToggle("Bring Enimes", {Title = "Bring badguys By Breaking BLitz", Default = false })
+if game.PlaceId == 13864667823  then
+	 local sadasdsadsadas = Money:AddToggle("Bring Enimes", {Title = "Bring badguys By Breaking BLitz", Default = false })
 
 sadasdsadsadas:OnChanged(function()		
 		
@@ -553,9 +554,9 @@ sadasdsadsadas:OnChanged(function()
 	end
 						BringAllEnemies()
 wait(0.0001)
-		end
-	end	
+		end	
     end)
+end
 
 -- settings
 
