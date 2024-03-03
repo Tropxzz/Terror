@@ -528,6 +528,34 @@ Money:AddButton({
 	end,
 })
 
+ local sadasdsadsadas = Money:AddToggle("Bring Enimes", {Title = "Bring badguys By Breaking BLitz", Default = false })
+
+sadasdsadsadas:OnChanged(function()		
+		local function BringAllEnemies()
+		pcall(function()
+			for i, v in pairs(game:GetService("Workspace").BadGuys:GetChildren()) do
+				v.HumanoidRootPart.Anchored = true
+				v.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, -4)
+			end
+			for i, v in pairs(game:GetService("Workspace").BadGuysBoss:GetChildren()) do
+				v.HumanoidRootPart.Anchored = true
+				v.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, -4)
+			end
+			
+			for i, v in pairs(game:GetService("Workspace").BadGuysFront:GetChildren()) do
+				v.HumanoidRootPart.Anchored = true
+				v.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, -4)
+			end
+		end)
+	end
+	
+	if sadasdsadsadas.Value == true then
+						BringAllEnemies()
+wait(0.0001)
+		end
+	end	
+    end)
+
 -- settings
 
 	InterfaceManager:SetLibrary(Fluent)
