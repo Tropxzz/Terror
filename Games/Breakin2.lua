@@ -558,6 +558,97 @@ wait(0.0001)
     end)
 end
 
+local function tween(pos)
+    game.TweenService:Create(player.Character.HumanoidRootPart, TweenInfo.new(
+        0.5,
+        Enum.EasingStyle.Sine
+    ), {
+        CFrame = pos
+    }):Play()
+end
+
+local oldPos_Farming = nil
+
+local function get()
+    local character = workspace[player.Name]
+    local backpack = player.Backpack
+
+    local lollipop = (backpack:FindFirstChild("Lollipop")) or (character:FindFirstChild("Lollipop"))
+    local drink = (backpack:FindFirstChild("Bottle")) or (character:FindFirstChild("Bottle"))
+
+    local bat = (backpack:FindFirstChild("Bat")) or (character:FindFirstChild("Bat"))
+    local medkit = (backpack:FindFirstChild("MedKit")) or (character:FindFirstChild("MedKit"))
+
+    local phone = (backpack:FindFirstChild("Phone")) or (character:FindFirstChild("Phone"))
+    local book = (backpack:FindFirstChild("Book")) or (character:FindFirstChild("Book"))
+
+    if (lollipop) then
+        return "The Hyper"
+    elseif (drink) then
+        return "The Sporty"
+    elseif (bat) then
+        return "The Protector"
+    elseif (medkit) then
+        return "The Medic"
+    elseif (phone) then
+        return "The Hacker"
+    elseif (book) then
+        return "The Nerd"
+    end
+end
+
+
+  local BetterFarm = Money:AddToggle("Auto Farm", {Title = "Auto Farm", Default = false })
+
+local combatZone = game:GetService("Workspace"):FindFirstChild("EvilArea"):FindFirstChild("Rug"):FindFirstChild("PartTex")
+local badGuys = workspace:FindFirstChild("BadGuys")
+
+
+    BetterFarm:OnChanged(function()
+  local value = BetterFarm.Value
+	
+        if (value) then
+            if not (oldPos_Farming) then
+                oldPos_Farming = player.Character.HumanoidRootPart.CFrame
+            end
+
+            tween(CFrame.new(-259.504608, 60.9477654, -745.243408, -0.999818861, 7.66576136e-08, 0.0190321952, 7.65230581e-08, 1, -7.79803688e-09, -0.0190321952, -6.34022257e-09, -0.999818861))
+
+            task.wait(0.8)
+            
+            while (value) do
+                if (get() == "The Nerd") or (get() == "The Hyper") or (get() == "The Sporty") then
+                    tween(combatZone.CFrame + Vector3.new(0, 2.4, 0))
+                else
+                    tween(combatZone.CFrame + Vector3.new(0, 3.78, 0))
+                end
+
+                if (badGuys) then
+                    for _,v in ipairs(badGuys:GetChildren()) do
+                        local newRoot = v:FindFirstChild("HumanoidRootPart")
+                        if (newRoot) then
+                            if (get() == "The Nerd") or (get() == "The Hyper") or (get() == "The Sporty") then
+                                newRoot.CFrame = CFrame.new(player.Character.HumanoidRootPart.Position + Vector3.new(0, 5, 0))
+                            else
+                                newRoot.CFrame = CFrame.new(player.Character.HumanoidRootPart.Position + Vector3.new(0, 6, 0))
+                            end
+                        end
+                    end
+                end
+                task.wait()
+            end
+        else
+            if (oldPos_Farming) == nil then
+                print("Starry whaled approchaing false error! 🐋")
+            else
+                task.wait(0.5)
+
+                tween(oldPos_Farming)
+                oldPos_Farming = nil
+            end
+        end
+    end)
+
 -- settings
 
 	InterfaceManager:SetLibrary(Fluent)
