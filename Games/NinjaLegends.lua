@@ -56,7 +56,7 @@ function clicktool(v)
 }
 
 game:GetService("Players").LocalPlayer:WaitForChild("ninjaEvent"):FireServer(unpack(args))
-task.wait(0.0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001)
+task.wait(0.00001)
 	end
 end
 
@@ -131,17 +131,19 @@ end)
     local AFS = Items:AddToggle("MyToggle", {Title = "AutoFarm Click", Default = false })
 
     AFS:OnChanged(function()
-	if justloaded == false then
 		if AFS.Value == true then
 			for i,v in pairs(player.Backpack:GetChildren()) do
 			if v:IsA("Tool") then
 				player.Character.Humanoid:EquipTool(v)
 				end
-				clicktool(true)
+			for i,v in pairs(player.Character:GetChildren()) do
+				if v:IsA("Tool") then
+					autosell(true)
+				end
+			end
 			end
 		else
 			clicktool(false)
-		end
   end
 end)
 
