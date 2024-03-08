@@ -104,37 +104,37 @@ Tpislands:OnChanged(function(Value)
 end)
 
 -- Items
+local AFS = Items:AddToggle("MyToggle", {Title = "AutoFarm Click", Default = false })
 
-    local AFS = Items:AddToggle("MyToggle", {Title = "AutoFarm Click", Default = false })
+AFS:OnChanged(function()
+    for i,v in pairs(player.Character:GetChildren()) do
+        if v:IsA("Tool") then
+            while AFS.Value == true do
+                local args = {
+                    [1] = "swingKatana"
+                }
 
-    AFS:OnChanged(function()
-	for i,v in pairs(player.Character:GetChildren()) do
-		if v:IsA("Tool") then
-			while AFS.Value == true  do
-		local args = {
-    [1] = "swingKatana"
-}
+                game:GetService("Players").LocalPlayer:WaitForChild("ninjaEvent"):FireServer(unpack(args))
+                task.wait(0.00001)
+            end
+        else
+            for i,v in pairs(player.Backpack:GetChildren()) do
+                if v:IsA("Tool") then
+                    v.Parent = player.Character
+                    while AFS.Value == true do
+                        local args = {
+                            [1] = "swingKatana"
+                        }
 
-game:GetService("Players").LocalPlayer:WaitForChild("ninjaEvent"):FireServer(unpack(args))
-task.wait(0.00001)
-			end
-		else
-			for i,v in pairs(player.Backpack:GetChildren()) do
-				if v:IsA("Tool") then
-					v.Parent = player.Character
-					while AFS.Value == true  do
-		local args = {
-    [1] = "swingKatana"
-}
-
-game:GetService("Players").LocalPlayer:WaitForChild("ninjaEvent"):FireServer(unpack(args))
-task.wait(0.00001)
-			end
-				end
-			end
-		end
-	end
+                        game:GetService("Players").LocalPlayer:WaitForChild("ninjaEvent"):FireServer(unpack(args))
+                        task.wait(0.00001)
+                    end
+                end
+            end
+        end
+    end
 end)
+
 
     local Autosell = Items:AddToggle("MyToggle", {Title = "AutoSell", Default = false })
 
