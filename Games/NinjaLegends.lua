@@ -112,8 +112,21 @@ end)
 			for i,v in pairs(player.Backpack:GetChildren()) do
 			if v:IsA("Tool") then
 				player.Character.Humanoid:EquipTool(v)
+				for i,v in pairs(player.Character:GetChildren()) do
+				if v:IsA("Tool") then
+						while AFS.Value == true  do
+		local args = {
+    [1] = "swingKatana"
+}
+
+game:GetService("Players").LocalPlayer:WaitForChild("ninjaEvent"):FireServer(unpack(args))
+task.wait(0.00001)
+			   	   end
+				end	
 				end
-			for i,v in pairs(player.Character:GetChildren()) do
+				for i, v in pairs(player.Character:GetChildren()) do
+					if v:IsA("Tool") then
+						for i,v in pairs(player.Character:GetChildren()) do
 				if v:IsA("Tool") then
 						while AFS.Value == true  do
 		local args = {
@@ -125,6 +138,9 @@ task.wait(0.00001)
 			   	   end
 				end	
 		 	end
+					end
+				end
+				end
 	 	end
   	end
 end)
