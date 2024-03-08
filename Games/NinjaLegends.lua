@@ -47,29 +47,6 @@ function unlockAll()
     end
 end
 
-
-
-function clicktool(v)
-	while v == true  do
-		local args = {
-    [1] = "swingKatana"
-}
-
-game:GetService("Players").LocalPlayer:WaitForChild("ninjaEvent"):FireServer(unpack(args))
-task.wait(0.00001)
-	end
-end
-
-
-function autosell(v)
-	while v == true do 
-		game:GetService("Workspace").sellAreaCircles.sellAreaCircle16.circleInner.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
-		wait(0.0000000000000000000000000000000000000000000000000000001)
-		game:GetService("Workspace").sellAreaCircles.sellAreaCircle16.circleInner.CFrame = CFrame.new(0,0,0)
-		wait(0.0000000000000000000000000000000000000000000000000000001)
-	end
-end
-
     Islands:AddButton({
         Title = "Unlock All islands",
         Description = "Unlock, every, single, island",
@@ -138,25 +115,30 @@ end)
 				end
 			for i,v in pairs(player.Character:GetChildren()) do
 				if v:IsA("Tool") then
-					autosell(true)
-				end
-			end
-			end
-		else
-			clicktool(false)
-  end
+						while AFS.Value == true  do
+		local args = {
+    [1] = "swingKatana"
+}
+
+game:GetService("Players").LocalPlayer:WaitForChild("ninjaEvent"):FireServer(unpack(args))
+task.wait(0.00001)
+			   	   end
+				end	
+		 	end
+	 	end
+  	end
 end)
 
     local Autosell = Items:AddToggle("MyToggle", {Title = "AutoSell", Default = false })
 
-    Autosell:OnChanged(function()
-	if justloaded == false then
-		if Autosell.Value == true then
-			autosell(true)
-		else
-			autosell(false)
-		end
-  end
+Autosell:OnChanged(function()
+    while Autosell.Value == true do
+        game:GetService("Workspace").sellAreaCircles.sellAreaCircle16.circleInner.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+        wait(0.0000000000000000000000000000000000000000000000000000001)
+        game:GetService("Workspace").sellAreaCircles.sellAreaCircle16.circleInner.CFrame = CFrame.new(0,0,0)
+        wait(0.0000000000000000000000000000000000000000000000000000001)
+    end
 end)
+
 
 justloaded = false
