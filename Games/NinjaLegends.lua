@@ -20,9 +20,6 @@ local player = game.Players.LocalPlayer
 local islandUnlockPoints = workspace.islandUnlockParts
 local islandparts
 
--- toggle
-_G.AS = false
-_G.ASw = false
 
 -- Islands
 
@@ -53,9 +50,7 @@ end
 
 
 function clicktool(v)
-		_G.ASw = v
-
-	while _G.ASw == true  do
+	while v == true  do
 		local args = {
     [1] = "swingKatana"
 }
@@ -67,11 +62,10 @@ end
 
 
 function autosell(v)
-	_G.AS = v
-	while _G.AS == true do 
-		game:GetService("Workspace").sellAreaCircle16.circleInner.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+	while v == true do 
+		game:GetService("Workspace").sellAreaCircles.sellAreaCircle16.circleInner.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
 		wait(0.0000000000000000000000000000000000000000000000000000001)
-		game:GetService("Workspace").sellAreaCircle16.circleInner.CFrame = CFrame.new(0,0,0)
+		game:GetService("Workspace").sellAreaCircles.sellAreaCircle16.circleInner.CFrame = CFrame.new(0,0,0)
 		wait(0.0000000000000000000000000000000000000000000000000000001)
 	end
 end
