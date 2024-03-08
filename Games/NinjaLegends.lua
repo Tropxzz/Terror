@@ -1,6 +1,7 @@
 local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
 local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
 local justloaded = true
+local Dialog = loadstring(game:HttpGet("https://raw.githubusercontent.com/Tropxzz/Terror/main/Modules/TerrorDialog.lua", true))()
 
 	local Window = Fluent:CreateWindow({
 		Title = "Terror 1.0 - Ninja Legends",
@@ -16,6 +17,7 @@ local Islands = Window:AddTab({ Title = "Islands", Icon = "landmark" })
 local Items = Window:AddTab({ Title = "Items", Icon = "hammer" })
 local S1tats = Window:AddTab({ Title = "Stats", Icon = "bar-chart-4" })
 local Chests = Window:AddTab({ Title = "Chests", Icon = "package" })
+local Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
 local player = game.Players.LocalPlayer
 local islandUnlockPoints = workspace.islandUnlockParts
 local islandparts
@@ -176,5 +178,9 @@ Autosell:OnChanged(function()
     end
 end)
 
+InterfaceManager:SetLibrary(Fluent)
+InterfaceManager:BuildInterfaceSection(Settings)
+
 
 justloaded = false
+Dialog.yellow("The Script Terror has loaded")
