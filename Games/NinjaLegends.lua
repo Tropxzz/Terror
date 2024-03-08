@@ -104,7 +104,36 @@ Tpislands:OnChanged(function(Value)
 end)
 
 -- Items
-local AFS = Items:AddToggle("MyToggle", {Title = "AutoFarm Click", Default = false })
+
+  local AutoBuySword = Items:AddToggle("MyToggle", {Title = "AutoSell", Default = false })
+
+AutoBuySword:OnChanged(function()
+    while AutoBuySword.Value == true do
+       local args = {
+    [1] = "buyAllSwords",
+    [2] = "Ground"
+}
+
+game:GetService("Players").LocalPlayer:WaitForChild("ninjaEvent"):FireServer(unpack(args))
+wait(0.00001)
+    end
+end)
+
+  local Autobuybelts = Items:AddToggle("MyToggle", {Title = "Autobuybelts", Default = false })
+
+Autobuybelts:OnChanged(function()
+    while Autobuybelts.Value == true do
+      local args = {
+    [1] = "buyAllBelts",
+    [2] = "Ground"
+}
+
+game:GetService("Players").LocalPlayer:WaitForChild("ninjaEvent"):FireServer(unpack(args))
+wait(0.00001)
+    end
+end)
+-- stats
+local AFS = S1tats:AddToggle("MyToggle", {Title = "AutoFarm Click", Default = false })
 
 AFS:OnChanged(function()
     for i,v in pairs(player.Character:GetChildren()) do
@@ -115,7 +144,7 @@ AFS:OnChanged(function()
                 }
 
                 game:GetService("Players").LocalPlayer:WaitForChild("ninjaEvent"):FireServer(unpack(args))
-                task.wait(0.00001)
+                task.wait(0.000000000000000000000000000000000000000000000000000000000000000000000000000000001)
             end
         else
             for i,v in pairs(player.Backpack:GetChildren()) do
@@ -136,7 +165,7 @@ AFS:OnChanged(function()
 end)
 
 
-    local Autosell = Items:AddToggle("MyToggle", {Title = "AutoSell", Default = false })
+    local Autosell = S1tats:AddToggle("MyToggle", {Title = "AutoSell", Default = false })
 
 Autosell:OnChanged(function()
     while Autosell.Value == true do
