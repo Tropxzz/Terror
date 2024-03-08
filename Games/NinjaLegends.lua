@@ -122,6 +122,14 @@ task.wait(0.00001)
 			for i,v in pairs(player.Backpack:GetChildren()) do
 				if v:IsA("Tool") then
 					v.Parent = player.Character
+					while AFS.Value == true  do
+		local args = {
+    [1] = "swingKatana"
+}
+
+game:GetService("Players").LocalPlayer:WaitForChild("ninjaEvent"):FireServer(unpack(args))
+task.wait(0.00001)
+			end
 				end
 			end
 		end
