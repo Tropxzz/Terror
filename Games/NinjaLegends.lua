@@ -19,6 +19,11 @@ local Chests = Window:AddTab({ Title = "Chests", Icon = "package" })
 local player = game.Players.LocalPlayer
 local islandUnlockPoints = workspace.islandUnlockParts
 local islandparts
+
+-- toggle
+_G.AS = false
+_G.ASw = false
+
 -- Islands
 
 function unlockAll()
@@ -43,6 +48,32 @@ function unlockAll()
             break
         end
     end
+end
+
+
+
+function clicktool(v)
+		_G.ASw = v
+
+	while _G.ASw == true  do
+		local args = {
+    [1] = "swingKatana"
+}
+
+game:GetService("Players").LocalPlayer:WaitForChild("ninjaEvent"):FireServer(unpack(args))
+task.wait(0.0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001)
+	end
+end
+
+
+function autosell(v)
+	_G.AS = v
+	while _G.AS == true do 
+		game:GetService("Workspace").sellAreaCircle16.circleInner.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+		wait(0.0000000000000000000000000000000000000000000000000000001)
+		game:GetService("Workspace").sellAreaCircle16.circleInner.CFrame = CFrame.new(0,0,0)
+		wait(0.0000000000000000000000000000000000000000000000000000001)
+	end
 end
 
     Islands:AddButton({
@@ -99,6 +130,37 @@ Tpislands:OnChanged(function(Value)
             end
         end
     end
+end)
+
+-- Items
+
+    local AFS = Items:AddToggle("MyToggle", {Title = "AutoFarm Click", Default = false })
+
+    AFS:OnChanged(function()
+	if justloaded == false then
+		if AFS.Value == true then
+			for i,v in pairs(player.Backpack:GetChildren()) do
+			if v:IsA("Tool") then
+				v:Equip()
+				clicktool(true)
+			end
+			end
+		else
+			clicktool(false)
+		end
+  end
+end)
+
+    local Autosell = Items:AddToggle("MyToggle", {Title = "AutoSell", Default = false })
+
+    Autosell:OnChanged(function()
+	if justloaded == false then
+		if Autosell.Value == true then
+			autosell(true)
+		else
+			autosell(false)
+		end
+  end
 end)
 
 justloaded = false
