@@ -108,41 +108,24 @@ end)
     local AFS = Items:AddToggle("MyToggle", {Title = "AutoFarm Click", Default = false })
 
     AFS:OnChanged(function()
-		if AFS.Value == true then
+	for i,v in pairs(player.Character:GetChildren()) do
+		if v:IsA("Tool") then
+			while AFS.Value == true  do
+		local args = {
+    [1] = "swingKatana"
+}
+
+game:GetService("Players").LocalPlayer:WaitForChild("ninjaEvent"):FireServer(unpack(args))
+task.wait(0.00001)
+			end
+		else
 			for i,v in pairs(player.Backpack:GetChildren()) do
-			if v:IsA("Tool") then
-				player.Character.Humanoid:EquipTool(v)
-				for i,v in pairs(player.Character:GetChildren()) do
 				if v:IsA("Tool") then
-						while AFS.Value == true  do
-		local args = {
-    [1] = "swingKatana"
-}
-
-game:GetService("Players").LocalPlayer:WaitForChild("ninjaEvent"):FireServer(unpack(args))
-task.wait(0.00001)
-			   	   end
-				end	
+					v.Parent = player.Character
 				end
-				for i, v in pairs(player.Character:GetChildren()) do
-					if v:IsA("Tool") then
-						for i,v in pairs(player.Character:GetChildren()) do
-				if v:IsA("Tool") then
-						while AFS.Value == true  do
-		local args = {
-    [1] = "swingKatana"
-}
-
-game:GetService("Players").LocalPlayer:WaitForChild("ninjaEvent"):FireServer(unpack(args))
-task.wait(0.00001)
-			   	   end
-				end	
-		 	end
-					end
-				end
-				end
-	 	end
-  	end
+			end
+		end
+	end
 end)
 
     local Autosell = Items:AddToggle("MyToggle", {Title = "AutoSell", Default = false })
