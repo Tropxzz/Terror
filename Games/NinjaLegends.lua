@@ -141,9 +141,9 @@ end)
 		if AFS.Value == true then
 			for i,v in pairs(player.Backpack:GetChildren()) do
 			if v:IsA("Tool") then
-				v:EquipTool()
+				player.Character.Humanoid:EquipTool(v)
+				end
 				clicktool(true)
-			end
 			end
 		else
 			clicktool(false)
