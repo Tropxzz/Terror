@@ -1,6 +1,6 @@
 local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
 local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
-
+local justloaded = true
 
 	local Window = Fluent:CreateWindow({
 		Title = "Terror 1.0 - Ninja Legends",
@@ -17,13 +17,12 @@ local Items = Window:AddTab({ Title = "Items", Icon = "hammer" })
 local S1tats = Window:AddTab({ Title = "Stats", Icon = "bar-chart-4" })
 local Chests = Window:AddTab({ Title = "Chests", Icon = "package" })
 local player = game.Players.LocalPlayer
-
+local islandUnlockPoints = workspace.islandUnlockParts
+local islandparts
 -- Islands
 
 function unlockAll()
     local islandsVisited = {}
-    local islandUnlockPoints = workspace.islandUnlockParts
-local player = game.Players.LocalPlayer
 
     while true do	
         local allIslandsVisited = false  -- Assume all islands are visited initially
@@ -73,3 +72,33 @@ end
         end
 })
 
+local test = {}
+local test2 = {}
+
+for _, part in pairs(islandUnlockPoints:GetDescendants()) do
+    if part:IsA("MeshPart") then
+	table.insert(test, part.Name)
+	end
+end
+
+local Tpislands = Islands:AddDropdown("Dropdown", {
+    Title = "Teleportto",
+    Values = test,
+    Multi = false,
+    Default = "Astral Island",
+})
+
+Tpislands:OnChanged(function(Value)
+    if not justloaded then
+        for _, part in pairs(islandUnlockPoints:GetDescendants()) do
+            if part:IsA("Part") then
+				if part.Parent.Name == Value then
+					player.Character.HumanoidRootPart.CFrame = part.CFrame
+                break
+				end
+            end
+        end
+    end
+end)
+
+justloaded = false
