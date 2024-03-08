@@ -105,7 +105,7 @@ end)
 
 -- Items
 
-  local AutoBuySword = Items:AddToggle("MyToggle", {Title = "AutoSell", Default = false })
+  local AutoBuySword = Items:AddToggle("MyToggle", {Title = "AutoBuySword", Default = false })
 
 AutoBuySword:OnChanged(function()
     while AutoBuySword.Value == true do
