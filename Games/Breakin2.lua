@@ -451,7 +451,7 @@ Trolling:AddButton({
 	Title = "Remove map",
 	Description = "Legit serversided 💀.",
 	Callback = function()
-		Remove(workspace)
+		Remove(workspace.Terrain)
 	end,
 })
 
