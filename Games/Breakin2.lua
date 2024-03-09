@@ -468,10 +468,19 @@ end
 	local asdlaksd= {}
 
 	for i,v in pairs(game.Players:GetPlayers()) do
-		if v.Name ~= player.Name then
-			table.insert(asdlaksd, v.Name)
+		if v.DisplayName ~= player.DisplayName then
+			table.insert(asdlaksd, v.DisplayName)
 		end
-	end
+end
+
+game.Players.PlayerAdded:Connect(function(p) 
+		table.insert(asdlaksd, p.DisplayName)
+end)
+
+game.Players.PlayerRemoving:Connect(function(p) 
+		table.remove(asdlaksd, p.DisplayName)
+end)
+
 
 	local KickPlayer = Trolling:AddDropdown("Dropdown", {
 	        Title = "Kick Player",
@@ -482,7 +491,7 @@ end
 
 	    KickPlayer:OnChanged(function(Value)
 		for i,v in pairs(game.Players:GetPlayers()) do
-			if v.Name == Value then
+			if v.DisplayName == Value then
 				Remove(v)
 		    end
 	    end
