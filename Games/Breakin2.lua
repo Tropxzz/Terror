@@ -460,11 +460,11 @@ Trolling:AddButton({
 })
 
 
-local asdlaksd= {"Select Player"}
+local asdlaksd= {}
 
 for i,v in pairs(game.Players:GetPlayers()) do
 	if v.Name ~= player.Name then
-		table.insert(asdlaksd, v)
+		table.insert(asdlaksd, v.Name)
 	end
 end
 
