@@ -439,6 +439,10 @@ Trolling:AddButton({
 })
 
 
+
+
+
+
 Trolling:AddButton({
 	Title = "Remove Tv Screen",
 	Description = "Legit serversided 💀.",
@@ -454,6 +458,32 @@ Trolling:AddButton({
 		Remove(workspace.Terrain)
 	end,
 })
+
+
+local asdlaksd= {}
+
+for i,v in pairs(game.Players:GetPlayers()) do
+	if v.Name ~= player.Name then
+		table.insert(asdlaksd, v)
+	end
+end
+
+local KickPlayer = Trolling.Main:AddDropdown("Dropdown", {
+        Title = "Kick Player",
+        Values = asdlaksd,
+        Multi = false,
+        Default = "Select Player",
+})
+
+    KickPlayer:OnChanged(function(Value)
+	for i,v in pairs(game.Players:GetPlayers()) do
+		if v.Name == Value then
+			Remove(v)
+	    end
+    end
+ end)
+
+
 
 --[[
 Trolling:AddButton({
