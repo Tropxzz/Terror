@@ -468,7 +468,7 @@ for i,v in pairs(game.Players:GetPlayers()) do
 	end
 end
 
-local KickPlayer = Trolling.Main:AddDropdown("Dropdown", {
+local KickPlayer = Trolling:AddDropdown("Dropdown", {
         Title = "Kick Player",
         Values = asdlaksd,
         Multi = false,
