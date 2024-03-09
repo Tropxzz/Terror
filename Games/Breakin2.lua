@@ -443,11 +443,6 @@ end
 		end,
 	})
 
-
-
-
-
-
 	Trolling:AddButton({
 		Title = "Remove Tv Screen",
 		Description = "Legit serversided 💀.",
@@ -467,9 +462,9 @@ end
 
 	local playerNames = {}
 
-for _, player in pairs(game.Players:GetPlayers()) do
-    if player.DisplayName ~= player.DisplayName then
-        table.insert(playerNames, player.DisplayName)
+for _, v in pairs(game.Players:GetPlayers()) do
+    if v.DisplayName ~= player.DisplayName then
+        table.insert(playerNames, v.DisplayName)
     end
 end
 
@@ -479,9 +474,8 @@ end)
 
 game.Players.PlayerRemoving:Connect(function(player)
     for i, name in ipairs(playerNames) do
-        if name == player.DisplayName then
+        if name ~= player.DisplayName then
             table.remove(playerNames, i)
-            break
         end
     end
 end)
