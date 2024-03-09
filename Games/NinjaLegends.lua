@@ -111,12 +111,13 @@ end)
 
 AutoBuySword:OnChanged(function()
     while AutoBuySword.Value == true do
-       local args = {
+      local args = {
     [1] = "buyAllSwords",
-    [2] = "Ground"
+    [2] = "Blazing Vortex Island"
 }
 
 game:GetService("Players").LocalPlayer:WaitForChild("ninjaEvent"):FireServer(unpack(args))
+
 wait(0.00001)
     end
 end)
@@ -127,7 +128,7 @@ Autobuybelts:OnChanged(function()
     while Autobuybelts.Value == true do
       local args = {
     [1] = "buyAllBelts",
-    [2] = "Ground"
+    [2] = "Blazing Vortex Island"
 }
 
 game:GetService("Players").LocalPlayer:WaitForChild("ninjaEvent"):FireServer(unpack(args))
