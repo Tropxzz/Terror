@@ -728,7 +728,7 @@
 	        end
 	end)
 
-	 local ac = Money:AddToggle("Autoclick", {Title = "Autoclicker (dont put gui in middle)", Default = false })
+	 local ac = Money:AddToggle("Autoclick", {Title = "Autoclicker", Default = false })
 
 	ac:OnChanged(function()		
 			while ac.Value == true do
