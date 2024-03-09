@@ -295,7 +295,7 @@ end
 				end
 			end
 
-	            for i = 1, 50 do
+	            for i = 1, 5 do
 	                GiveItem("Gold Pizza")
 	            end
 	        end
