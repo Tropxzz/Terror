@@ -729,6 +729,17 @@ local badGuys = workspace:FindFirstChild("BadGuys")
                 oldPos_Farming = nil
             end
         end
+end)
+
+ local ac = Money:AddToggle("Autoclick", {Title = "Autoclicker (dont put gui in middle)", Default = false })
+
+ac:OnChanged(function()		
+		while ac.Value == true do
+		local virtualUser = game:GetService("VirtualUser")
+            virtualUser:CaptureController()
+		virtualUser:ClickButton1(Vector2.new(0.458, 0,0.437, 0))
+		wait(.0000000000000000001)
+		end
     end)
 
 -- settings
