@@ -591,7 +591,7 @@
 	            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame
 	            local virtualUser = game:GetService("VirtualUser")
 	            virtualUser:CaptureController()
-	            virtualUser:ClickButton1(Vector2.new(-999, -999))
+	            virtualUser:ClickButton1(Vector2.new(0, 0))
 	        end
 			end
 			wait(0.0000000001)
@@ -734,7 +734,7 @@
 			while ac.Value == true do
 			local virtualUser = game:GetService("VirtualUser")
 	            virtualUser:CaptureController()
-			virtualUser:ClickButton1(Vector2.new(-999, -999))
+			virtualUser:ClickButton1(Vector2.new(0,0))
 			wait(.0000000000000000001)
 			end
 	    end)
