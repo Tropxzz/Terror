@@ -460,7 +460,7 @@ Trolling:AddButton({
 })
 
 
-local asdlaksd= {}
+local asdlaksd= {"Select Player"}
 
 for i,v in pairs(game.Players:GetPlayers()) do
 	if v.Name ~= player.Name then
