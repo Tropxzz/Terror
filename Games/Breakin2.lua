@@ -280,8 +280,8 @@ NPC:AddButton({
   local pizzagoldyes = Items:AddToggle("Inf gold pizza fr", {Title = "freegoldpizza", Default = false })
 
 
-pizzagoldyes:OnChanged(function(v)
-	while (v) do
+pizzagoldyes:OnChanged(function()
+	while (pizzagoldyes.Value) do
             game["Run Service"].Stepped:Wait()
 		
 						local function GiveItem(Item)
