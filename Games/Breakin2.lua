@@ -34,7 +34,10 @@
 		-- thanks headlined for coming up with this feature
 	local Events = game:GetService("ReplicatedStorage"):WaitForChild("Events")
 	Events.OnDoorHit:FireServer(p)
-	end
+end
+
+
+
 
 
 	Window:SelectTab(1)
@@ -292,7 +295,7 @@
 				end
 			end
 
-	            for i = 1, 5 do
+	            for i = 1, 50 do
 	                GiveItem("Gold Pizza")
 	            end
 	        end
@@ -591,7 +594,7 @@
 	            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame
 	            local virtualUser = game:GetService("VirtualUser")
 	            virtualUser:CaptureController()
-	            virtualUser:ClickButton1(Vector2.new(0, 0))
+	            virtualUser:ClickButton1(Vector2.new(0.458, 0,0.437))
 	        end
 			end
 			wait(0.0000000001)
@@ -728,13 +731,13 @@
 	        end
 	end)
 
-	 local ac = Money:AddToggle("Autoclick", {Title = "Autoclicker", Default = false })
+	 local ac = Money:AddToggle("Autoclick", {Title = "Autoclicker (dont put gui in middle)", Default = false })
 
 	ac:OnChanged(function()		
 			while ac.Value == true do
 			local virtualUser = game:GetService("VirtualUser")
 	            virtualUser:CaptureController()
-			virtualUser:ClickButton1(Vector2.new(0,0))
+			virtualUser:ClickButton1(Vector2.new(0.458, 0,0.437))
 			wait(.0000000000000000001)
 			end
 	    end)
