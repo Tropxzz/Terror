@@ -465,29 +465,34 @@ end
 	})
 
 
-	local asdlaksd= {}
+	local playerNames = {}
 
-	for i,v in pairs(game.Players:GetPlayers()) do
-		if v.DisplayName ~= player.DisplayName then
-			table.insert(asdlaksd, v.DisplayName)
-		end
+for _, player in pairs(game.Players:GetPlayers()) do
+    if player.DisplayName ~= player.DisplayName then
+        table.insert(playerNames, player.DisplayName)
+    end
 end
 
-game.Players.PlayerAdded:Connect(function(p) 
-		table.insert(asdlaksd, p.DisplayName)
+game.Players.PlayerAdded:Connect(function(player)
+    table.insert(playerNames, player.DisplayName)
 end)
 
-game.Players.PlayerRemoving:Connect(function(p) 
-		table.remove(asdlaksd, p.DisplayName)
+game.Players.PlayerRemoving:Connect(function(player)
+    for i, name in ipairs(playerNames) do
+        if name == player.DisplayName then
+            table.remove(playerNames, i)
+            break
+        end
+    end
 end)
 
+local KickPlayer = Trolling:AddDropdown("Dropdown", {
+    Title = "Kick Player",
+    Values = playerNames,
+    Multi = false,
+    Default = "Select Player",
+})
 
-	local KickPlayer = Trolling:AddDropdown("Dropdown", {
-	        Title = "Kick Player",
-	        Values = asdlaksd,
-	        Multi = false,
-	        Default = "Select Player",
-	})
 
 	    KickPlayer:OnChanged(function(Value)
 		for i,v in pairs(game.Players:GetPlayers()) do
