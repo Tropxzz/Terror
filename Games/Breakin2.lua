@@ -2,7 +2,6 @@ local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/
 local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
 local Dialog = loadstring(game:HttpGet("https://raw.githubusercontent.com/Tropxzz/Terror/main/Modules/TerrorDialog.lua", true))()
 local Events = game:GetService("ReplicatedStorage"):WaitForChild("Events")
-
 local player = game.Players.LocalPlayer
 _G.FreeHealthenabled = false
 
@@ -15,6 +14,7 @@ local Window = Fluent:CreateWindow({
 		Theme = "Dark",
 		MinimizeKey = Enum.KeyCode.LeftControl -- Used when theres no MinimizeKeybind
 })
+
 
 local Lobby = Window:AddTab({ Title = "Lobby", Icon = "egg" })
 local Trolling = Window:AddTab({ Title = "Trolling", Icon = "angry" })
@@ -29,6 +29,13 @@ local Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
 function TeleportTo(c)
 	player.Character.HumanoidRootPart.CFrame = c
 end
+
+function Remove(p)
+	-- thanks headlined for coming up with this feature
+local Events = game:GetService("ReplicatedStorage"):WaitForChild("Events")
+Events.OnDoorHit:FireServer(p)
+end
+
 
 Window:SelectTab(1)
 
@@ -419,6 +426,45 @@ Trolling:AddButton({
 	end,
 })
 
+Trolling:AddButton({
+	Title = "Remove others",
+	Description = "Legit serversided 💀.",
+	Callback = function()
+		for i,v in pairs(game.Players:GetPlayers()) do
+			if v.Name ~= player.Name and v:IsA("Player") then
+				Remove(v)
+			end
+		end
+	end,
+})
+
+
+Trolling:AddButton({
+	Title = "Remove Tv Screen",
+	Description = "Legit serversided 💀.",
+	Callback = function()
+		Remove(workspace.TheHouse.Projector)
+	end,	
+})
+
+Trolling:AddButton({
+	Title = "Remove map",
+	Description = "Legit serversided 💀.",
+	Callback = function()
+		Remove(workspace)
+	end,
+})
+
+--[[
+Trolling:AddButton({
+	Title = "Kill others",
+	Description = "Legit serversided 💀.",
+	Callback = function()
+		
+	end,
+})
+]]
+
 Randomstuff:AddButton({
 	Title = "Remove hail",
 	Description = "bye hail.",
@@ -607,7 +653,7 @@ local badGuys = workspace:FindFirstChild("BadGuys")
     BetterFarm:OnChanged(function()
   local value = BetterFarm.Value
 	
-        if BetterFarm.Value == true then
+ 	       if BetterFarm.Value == true then
             if not (oldPos_Farming) then
                 oldPos_Farming = player.Character.HumanoidRootPart.CFrame
             end
