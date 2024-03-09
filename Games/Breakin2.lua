@@ -468,17 +468,20 @@ for _, v in pairs(game.Players:GetPlayers()) do
     end
 end
 
-game.Players.PlayerAdded:Connect(function(player)
-    table.insert(playerNames, player.DisplayName)
-end)
-
-game.Players.PlayerRemoving:Connect(function(player)
-    for i, name in ipairs(playerNames) do
-        if name ~= player.DisplayName then
-            table.remove(playerNames, i)
+game.Players.PlayerAdded:Connect(function(alayer)
+        if (alayer) ~= player.Name then
+            table.insert(playerNames, player.Name)
         end
-    end
-end)
+    end)
+
+    game.Players.PlayerRemoving:Connect(function(alayer)
+        for i,v in ipairs(playerNames) do
+            if (v) ~= alayer.Name then
+                table.remove(playerNames, i)
+                break
+            end
+        end
+    end)
 
 local KickPlayer = Trolling:AddDropdown("Dropdown", {
     Title = "Kick Player",
