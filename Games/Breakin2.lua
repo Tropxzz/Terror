@@ -489,6 +489,7 @@ end
 
 	local playerNames = {}
 
+--[[
 for _, v in pairs(game.Players:GetPlayers()) do
     if v.DisplayName ~= player.DisplayName then
         table.insert(playerNames, v.DisplayName)
@@ -508,7 +509,8 @@ game.Players.PlayerAdded:Connect(function(alayer)
                 break
             end
         end
-    end)
+    end) -- when i was doing dropdown
+]]
 
 local kicker = Trolling:AddInput("Kick Player", {
     Title = "Kick Player",
