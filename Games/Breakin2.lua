@@ -26,6 +26,14 @@
 	local Plrr = Window:AddTab({ Title = "Player", Icon = "user" })
 	local Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
 
+     local function GiveItem(Item)
+				if Item == "Armor" then
+					Events:WaitForChild("Vending"):FireServer(3, "Armor2", "Armor", tostring(game.Players.LocalPlayer), 1)
+				else
+					Events:WaitForChild("GiveTool"):FireServer(tostring(Item:gsub(" ", "")))
+				end
+			end
+
 	function TeleportTo(c)
 		player.Character.HumanoidRootPart.CFrame = c
 	end
@@ -781,6 +789,19 @@ end)
      v.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame + Vector3.new(2,0,0)
   end
 end
+		end,
+})
+
+
+	Money:AddButton({
+		Title = "Get Best tool",
+		Description = "Made By Breaking Blitz",
+		Callback = function()
+		for i, v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.Assets.Note.Note.Note:GetChildren()) do
+			if v.Name:match("Circle") and v.Visible == true then
+				GiveItem(tostring(v.Name:gsub("Circle", "")))
+			end
+		end
 		end,
 	})
 
