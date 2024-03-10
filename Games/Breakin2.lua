@@ -22,7 +22,7 @@
 	local NPC = Window:AddTab({ Title = "NPCS", Icon = "users" })
 	local Buffs = Window:AddTab({ Title = "Buffs", Icon = "hand-metal" })
 	local Randomstuff = Window:AddTab({ Title = "RandomShit", Icon = "help-circle" })
-	local Money = Window:AddTab({ Title = "Money", Icon = "piggy-bank" })
+	local Money = Window:AddTab({ Title = "Money / Combat", Icon = "piggy-bank" })
 	local Plrr = Window:AddTab({ Title = "Player", Icon = "user" })
 	local Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
 
@@ -770,7 +770,19 @@ end
 			virtualUser:ClickButton1(Vector2.new(0.458, 0,0.437))
 			wait(.0000000000000000001)
 			end
-	    end)
+end)
+
+	Money:AddButton({
+		Title = "Bring fighting arena Bad guys",
+		Description = "Brings the bad guys that spawn in the fighting arena",
+		Callback = function()
+			for i,v in pairs(workspace.BadGuys:GetChildren()) do
+  if v:IsA("Model") then
+     v.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame + Vector3.new(2,0,0)
+  end
+end
+		end,
+	})
 
 	-- settings
 
