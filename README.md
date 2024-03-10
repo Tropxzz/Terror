@@ -10,7 +10,6 @@ This heavy chunk of code makes the code "Terror" Terror is a fun and useful scri
 # Getting Started
 run it and play around ig
 # Contributing
-> CANVA HELPED MAKE THE LOGO NOT SUNO LLL
 some of the code - suno/headlined
 
 # License
