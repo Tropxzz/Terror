@@ -797,9 +797,10 @@ end
 
 	Money:AddButton({
 		Title = "Get Best tool",
-		Description = "Made By Breaking Blitz",
-		Callback = function()
-		for i, v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.Assets.Note.Note.Note:GetChildren()) do
+		Description = "Gets best tool",
+	Callback = function()
+		-- orginal by breaking blitz but the original gave u what twado wants so i just edited it to get the best weapon for anyone calling me a skid
+		for i, v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.Assets.Note2.Note2.Note2:GetChildren()) do
 			if v.Name:match("Circle") and v.Visible == true then
 				GiveItem(tostring(v.Name:gsub("Circle", "")))
 			end
