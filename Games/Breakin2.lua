@@ -799,10 +799,17 @@ end
 		Title = "Get Best tool",
 		Description = "Gets best tool",
 	Callback = function()
-		-- orginal by breaking blitz but the original gave u what twado wants so i just edited it to get the best weapon for anyone calling me a skid
 		for i, v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.Assets.Note2.Note2.Note2:GetChildren()) do
 			if v.Name:match("Circle") and v.Visible == true then
-				GiveItem(tostring(v.Name:gsub("Circle", "")))
+				local args = {
+	    [1] = 3,
+	    [2] = tostring(v.Name:gsub("Circle", "")),
+	    [3] = "Weapons",
+	    [4] = player.Name,
+	    [6] = 0
+		}
+
+	game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("Vending"):FireServer(unpack(args))
 			end
 		end
 		end,
