@@ -37,7 +37,26 @@
 end
 
 
+local function find(string)
+    if not (string) then
+        return
+    end
 
+    local saved = {}
+
+    for _,v in ipairs(game.Players:GetPlayers()) do
+        if (string.lower(v.Name):match(string.lower(string))) or (string.lower(v.DisplayName):match(string.lower(string))) then
+            table.insert(saved, v)
+        end
+    end
+
+    if (#saved) > (0) then
+        print(type(saved[1]))
+        return saved[1]
+    elseif (#saved) < (1) then
+        return nil
+    end
+end
 
 
 	Window:SelectTab(1)
@@ -477,29 +496,29 @@ game.Players.PlayerAdded:Connect(function(alayer)
     game.Players.PlayerRemoving:Connect(function(alayer)
         for i,v in ipairs(playerNames) do
             if (v) ~= alayer.Name then
-                table.remove(playerNames, i)
+                table.remove(playerNames, v)
                 break
             end
         end
     end)
 
-local KickPlayer = Trolling:AddDropdown("Dropdown", {
+local kicker = Trolling:AddInput("Kick Player", {
     Title = "Kick Player",
-    Values = playerNames,
-    Multi = false,
-    Default = "Select Player",
+    Default = "",
+    Placeholder = "EnterPlayerName",
+    Numeric = false,
+    Finished = true,
+    Callback = function(value)
+        local playaer = find(value)
+		for i,v in pairs(game.Players:GetChildren()) do
+				 if value.Name == player.Name  or value.DisplayName == player.DisplayName then
+			    warn("Stop tryna commit suicide")
+            else
+               	Remove(game.Players[tostring(playaer)])
+        end
+	end
+end          
 })
-
-
-	    KickPlayer:OnChanged(function(Value)
-		for i,v in pairs(game.Players:GetPlayers()) do
-			if v.DisplayName == Value then
-				Remove(v)
-		    end
-	    end
-	 end)
-
-
 
 	--[[
 	Trolling:AddButton({
