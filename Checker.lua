@@ -10,4 +10,7 @@ else
     loadstring(game:HttpGet("https://raw.githubusercontent.com/Tropxzz/Terror/main/Universal.lua", true))()
 end
 
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Tropxzz/Terror/main/Modules/bldetector",true))()
+
+
 -- queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/Tropxzz/Terror/main/Checker.lua', true))()")
