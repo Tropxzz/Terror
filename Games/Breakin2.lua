@@ -862,7 +862,29 @@ Ending:AddButton({
 
 -- made by me
 
--- nothing by me yet 😭
+Ending:AddButton({
+    Title = "Activate secret ending",
+    Description = "Activate secret ending.",
+    Callback = function()
+			local args = {
+    [1] = "MaskCollected"
+}
+
+game:GetService("ReplicatedStorage").Events.LarryEndingEvent:FireServer(unpack(args))
+
+local arags = {
+    [1] = "HatCollected"
+}
+
+game:GetService("ReplicatedStorage").Events.LarryEndingEvent:FireServer(unpack(arags))
+
+local args1 = {
+    [1] = "CrowbarCollected"
+}
+
+			game:GetService("ReplicatedStorage").Events.LarryEndingEvent:FireServer(unpack(args1))
+    end
+})
 
 -- settings
 
@@ -870,3 +892,8 @@ InterfaceManager:SetLibrary(Fluent)
 InterfaceManager:BuildInterfaceSection(Settings)
 
 Dialog.yellow("The Script Terror has loaded")
+
+
+
+
+
