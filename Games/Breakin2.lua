@@ -15,8 +15,6 @@ local Window = Fluent:CreateWindow({
 	MinimizeKey = Enum.KeyCode.LeftControl -- Used when theres no MinimizeKeybind
 })
 
-
-local Lobby = Window:AddTab({ Title = "Lobby", Icon = "egg" })
 local Trolling = Window:AddTab({ Title = "Trolling", Icon = "angry" })
 local Items = Window:AddTab({ Title = "Items", Icon = "hammer" })
 local NPC = Window:AddTab({ Title = "NPCS", Icon = "users" })
@@ -24,6 +22,7 @@ local Buffs = Window:AddTab({ Title = "Buffs", Icon = "hand-metal" })
 local Randomstuff = Window:AddTab({ Title = "RandomShit", Icon = "help-circle" })
 local Money = Window:AddTab({ Title = "Money / Combat", Icon = "piggy-bank" })
 local Plrr = Window:AddTab({ Title = "Player", Icon = "user" })
+local Ending = Window:AddTab({ Title = "Ending", Icon = "key" })
 local Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
 
 local function GiveItem(Item)
@@ -102,46 +101,6 @@ local function Confirmation(head, content, cb)
 end
 
 Window:SelectTab(1)
-
--- Lobby
-
-Lobby:AddParagraph({
-    Title = "Section 1",
-    Content = "This section contains Role Exploits"
-})
-
-Lobby:AddButton({
-    Title = "Nerd",
-    Description = 'Makes ur Role "Nerd".',
-    Callback = function()
-        local A_1 = "Book"
-        if game:GetService("ReplicatedStorage").RemoteEvents:FindFirstChild("OutsideRole") then
-            local Event = game:GetService("ReplicatedStorage"):FindFirstChild("RemoteEvents"):FindFirstChild("OutsideRole")
-            Event:FireServer(A_1)
-        end
-    end
-})
-
-Lobby:AddButton({
-    Title = "Hacker",
-    Description = 'Makes ur Role "Hacker".',
-    Callback = function()
-        local A_1 = "Phone"
-        if game:GetService("ReplicatedStorage").RemoteEvents:FindFirstChild("OutsideRole") then
-            local Event = game:GetService("ReplicatedStorage"):FindFirstChild("RemoteEvents"):FindFirstChild("OutsideRole")
-            Event:FireServer(A_1)
-        end
-    end
-})
-
-Lobby:AddButton({
-    Title = "SoloGame",
-    Description = "teleports u ingame with no players",
-    Callback = function()
-        game["Teleport Service"]:Teleport(13864667823, player)
-    end
-})
-
 
 -- Ingame
 Buffs:AddButton({
@@ -484,10 +443,25 @@ Trolling:AddButton({
     Callback = function()
         Confirmation("Are you sure?", "This module breaks the game 😭", function()
             if workspace:FindFirstChild("TheHouse") and workspace.TheHouse:FindFirstChild("Projector") then
-                workspace.TheHouse.Projector:Destroy()
+                Remove(workspace:FindFirstChild("TheHouse"):FindFirstChild("Projector"))
                 notify("Deleted", "You have successfully deleted it.")
             else
-                notify("Error", "The TV screen does not exist or has already been deleted.")
+                notify("Error", "The tv has already been deleted.")
+            end
+        end)
+    end
+})
+
+Trolling:AddButton({
+    Title = "Remove Weights",
+    Description = "Legit serversided 💀.",
+    Callback = function()
+        Confirmation("Are you sure?", "This module breaks the game 😭", function()
+            if workspace:FindFirstChild("BenchPresses") then
+                Remove(workspace:FindFirstChild("BenchPresses"))
+                notify("Deleted", "You have successfully deleted it.")
+            else
+                notify("Error", "Benches has already been deleted.")
             end
         end)
     end
@@ -558,7 +532,24 @@ Randomstuff:AddButton({
     end,
 })
 
-
+Randomstuff:AddButton({
+    Title = "Updated Get outside food",
+    Description = "Pizza and drinks .",
+    Callback = function()
+        local foods = workspace:FindFirstChild("OutsideParts")
+        for i,v in ipairs(foods:GetChildren()) do
+    if (v:IsA("Model")) or (v:IsA("Part")) then
+        if (i) ~= 0 then
+            fireclickdetector(v.ClickDetector)
+        end
+    end
+end
+task.wait(0.5)
+  	 for i = 1,3 do
+    	 game.Players.LocalPlayer.HumanoidRootPart.CFrame = (CFrame.new(-203.533081, 30.4500484, -790.901428, -0.0148558766, 8.85941187e-09, -0.999889672, 2.65695732e-08, 1, 8.46563175e-09, 0.999889672, -2.64408779e-08, -0.0148558766) + Vector3.new(0, 5, 0))
+   	end
+ end
+})
 		-- player
 
 		 
@@ -785,6 +776,93 @@ Money:AddButton({
         end
     end,
 })
+
+Money:AddButton({
+    Title = "Kill wave 3 brute",
+    Description = "Go Fighting Arena",
+    Callback = function()
+	for i = 1,35 do
+       if (workspace:WaitForChild("BadGuyBrute")) then
+  		Events:WaitForChild("HitBadguy"):FireServer(workspace:FindFirstChild("BadGuyBrute"), 64.8, 4)
+  end
+    game["Run Service"].Stepped:Wait()
+	end
+end,
+})
+
+-- ending
+-- code under me is made by headlined/suno
+	shared.found = false
+    local s = false
+
+    Ending:AddParagraph({
+        Title = "Notes Have Already Been Found." -- { Notes Are Ready to be Found, Notes Not Ready to be Found, Notes Have Already Been Found }
+    })
+
+    local function reeree(text)
+        for _,v in ipairs(game:GetService("CoreGui"):FindFirstChild("ScreenGui"):GetDescendants()) do 
+            if (v:IsA("TextLabel")) then 
+                if (string.find(v.Text, "Notes ")) then 
+                    v.Text = text
+                end
+            end
+        end
+    end
+
+    coroutine.wrap(function()
+        xpcall(function()
+            if (shared.found) then
+                reeree("Notes Have Already Been Found.")
+            else
+                while task.wait(0.5) do
+                    for _,v in ipairs(workspace:FindFirstChild("Hidden"):GetChildren()) do
+                        if (string.find(v.Name, "Note")) then
+                            if (v.Transparency) == 0 then
+                                reeree("Notes Are Ready to be Found.")
+                                break
+                            else
+                               reeree("Notes Not Ready to be Found.")
+                           end
+                       end
+                   end
+               end
+           end
+       end, function()
+    end)
+end)()
+
+Ending:AddButton({
+    Title = "Collect Secret Notes",
+    Description = "Get all of the hidden notes for the Origin Ending.",
+    Callback = function()
+       if not (shared.found) then
+          for _,v in ipairs(workspace:FindFirstChild("Hidden"):GetChildren()) do
+            if (string.find(v.Name, "Note")) then
+                 if (v.Transparency) == 0 then
+                    fireclickdetector(v.ClickDetector)
+                    shared.found = true
+                    reeree("All Notes Have Been Found.")
+                        else
+                            if not (s) then
+                                s = true
+                                notify("Hmm..", "It looks like the notes haven't spawned yet.")
+                            end
+                        end
+                    end
+                end
+                task.wait(0.5)
+                if (s) then
+                    s = false
+                end
+        else
+           notify("Hmm..", "The notes have already been collected.")
+      end
+    end
+})
+
+-- made by me
+
+-- nothing by me yet 😭
 
 -- settings
 
