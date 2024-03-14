@@ -104,8 +104,8 @@ Window:SelectTab(1)
 
 -- Ingame
 Buffs:AddButton({
-    Title = "Max Speed",
-    Description = 'Maxes out your speed.',
+    Title = "Max Strength",
+    Description = 'Maxes out your Strength.',
     Callback = function()
         local function Train(Ability)
             Events:WaitForChild("RainbowWhatStat"):FireServer(Ability)
@@ -121,8 +121,8 @@ Buffs:AddButton({
 })
 
 Buffs:AddButton({
-    Title = "Max Strength",
-    Description = 'Maxes out ur strength.',
+    Title = "Max Speed",
+    Description = 'Maxes out ur Speed.',
     Callback = function()
         local function Train(Ability)
             Events:WaitForChild("RainbowWhatStat"):FireServer(Ability)
@@ -148,6 +148,16 @@ Buffs:AddButton({
     end,
 })
 
+Buffs:AddButton({
+    Title = "+1 Speed",
+    Description = 'Adds one Speed point.',
+    Callback = function()
+        local function Train(Ability)
+            Events:WaitForChild("RainbowWhatStat"):FireServer(Ability)
+        end
+        Train("Speed")
+    end,
+})
 
 NPC:AddButton({
     Title = "Get all NPCS",
@@ -546,7 +556,7 @@ Randomstuff:AddButton({
 end
 task.wait(0.5)
   	 for i = 1,3 do
-    	 game.Players.LocalPlayer.HumanoidRootPart.CFrame = (CFrame.new(-203.533081, 30.4500484, -790.901428, -0.0148558766, 8.85941187e-09, -0.999889672, 2.65695732e-08, 1, 8.46563175e-09, 0.999889672, -2.64408779e-08, -0.0148558766) + Vector3.new(0, 5, 0))
+    	 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = (CFrame.new(-203.533081, 30.4500484, -790.901428, -0.0148558766, 8.85941187e-09, -0.999889672, 2.65695732e-08, 1, 8.46563175e-09, 0.999889672, -2.64408779e-08, -0.0148558766) + Vector3.new(0, 5, 0))
    	end
  end
 })
@@ -615,33 +625,42 @@ Money:AddButton({
     end,
 })
 
-if game.PlaceId == 13864667823 then
-    local sadasdsadsadas = Money:AddToggle("Bring Enimes", {Title = "Bring badguys By Breaking BLitz", Default = false })
-
-    sadasdsadsadas:OnChanged(function()        
-        if sadasdsadsadas.Value == true then
-            local function BringAllEnemies()
-                pcall(function()
-                    for i, v in pairs(game:GetService("Workspace").BadGuys:GetChildren()) do
-                        v.HumanoidRootPart.Anchored = true
-                        v.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, -4)
-                    end
-                    for i, v in pairs(game:GetService("Workspace").BadGuysBoss:GetChildren()) do
-                        v.HumanoidRootPart.Anchored = true
-                        v.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, -4)
-                    end
-                    
-                    for i, v in pairs(game:GetService("Workspace").BadGuysFront:GetChildren()) do
-                        v.HumanoidRootPart.Anchored = true
-                        v.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, -4)
-                    end
-                end)
+Money:AddButton({
+    Title = "Bring fighting arena Bad guys",
+    Description = "Brings the bad guys that spawn in the fighting arena",
+    Callback = function()
+        for i,v in pairs(workspace.BadGuys:GetChildren()) do
+            if v:IsA("Model") then
+                v.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame + Vector3.new(2,0,0)
             end
-            BringAllEnemies()
-            wait(0.0001)
-        end    
-    end)
-end
+        end
+    end,
+})
+
+Money:AddButton({
+    Title = "Kill Wave Bad guys",
+    Description = "Kill the bad guys that spawn in the waves",
+    Callback = function()
+		for i,v in pairs(workspace.BadGuysFront:GetChildren()) do
+			if v:IsA("Model") then
+				v:Destroy()
+			end
+		end
+    end,
+})
+
+Money:AddButton({
+    Title = "Bring Wave Bad guys",
+    Description = "Brings the bad guys that spawn in the waves",
+    Callback = function()
+		for i,v in pairs(workspace.BadGuysFront:GetChildren()) do
+			if  v.HumanoidRootPart then
+				local hum = v.HumanoidRootPart
+				hum.CFrame = player.Character.HumanoidRootPart.CFrame + Vector3.new(3,0,0)
+			end
+		end
+    end,
+})
 
 local function tween(pos)
     game.TweenService:Create(player.Character.HumanoidRootPart, TweenInfo.new(
@@ -745,17 +764,7 @@ ac:OnChanged(function()
     end
 end)
 
-Money:AddButton({
-    Title = "Bring fighting arena Bad guys",
-    Description = "Brings the bad guys that spawn in the fighting arena",
-    Callback = function()
-        for i,v in pairs(workspace.BadGuys:GetChildren()) do
-            if v:IsA("Model") then
-                v.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame + Vector3.new(2,0,0)
-            end
-        end
-    end,
-})
+
 
 Money:AddButton({
     Title = "Get Best tool",
@@ -863,10 +872,10 @@ Ending:AddButton({
 -- made by me
 
 Ending:AddButton({
-    Title = "Activate secret ending",
+    Title = "Activate secret ending V1	",
     Description = "Activate secret ending.",
     Callback = function()
-			local args = {
+		local args = {
     [1] = "MaskCollected"
 }
 
@@ -882,8 +891,24 @@ local args1 = {
     [1] = "CrowbarCollected"
 }
 
-			game:GetService("ReplicatedStorage").Events.LarryEndingEvent:FireServer(unpack(args1))
-    end
+game:GetService("ReplicatedStorage").Events.LarryEndingEvent:FireServer(unpack(args1))
+end
+})
+
+local SecretEndingTable = {
+        "HatCollected",
+        "MaskCollected",
+        "CrowbarCollected"
+    }
+
+Ending:AddButton({
+    Title = "Activate secret ending V2",
+    Description = "Activate secret ending.",
+    Callback = function()
+		for i,v in pairs(SecretEndingTable) do
+game:GetService("ReplicatedStorage").Events.LarryEndingEvent:FireServer(v)
+end
+end
 })
 
 -- settings
@@ -892,8 +917,3 @@ InterfaceManager:SetLibrary(Fluent)
 InterfaceManager:BuildInterfaceSection(Settings)
 
 Dialog.yellow("The Script Terror has loaded")
-
-
-
-
-
