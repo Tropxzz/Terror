@@ -110,13 +110,10 @@ end
 	        local function Train(Ability)
 	            Events:WaitForChild("RainbowWhatStat"):FireServer(Ability)
 	        end
-	        local a = 0
-	        while wait(1) do
-	            a = a + 1
-	            if a ~= 5 then
-	                Train("Strength")
-	            end
-	        end
+	        	for i = 1,8 do
+			Train("Strength")
+			game:GetService("RunService").Stepped:Wait()
+		end
 	    end,
 	})
 
@@ -127,13 +124,10 @@ end
 	        local function Train(Ability)
 	            Events:WaitForChild("RainbowWhatStat"):FireServer(Ability)
 	        end
-	        local a = 0
-	        while wait(1) do
-	            a = a + 1
-	            if a ~= 5 then
-	                Train("Speed")
-	            end
-	        end
+		for i = 1,8 do
+			Train("Speed")
+			game:GetService("RunService").Stepped:Wait()
+		end
 	    end,
 	})
 
@@ -577,7 +571,35 @@ end)
 	        Events:FindFirstChild("LadderEvent"):FireServer(2, 2)
 	        Events:FindFirstChild("LadderEvent"):FireServer(3)
 	    end,
-	})
+})
+local Toasdsggle = Randomstuff:AddToggle("MyToggle", {Title = "Highlight Hidden items", Default = false})
+--[[
+Description = "💵🎁 👓👨‍🦰 - u fr" fr
+]]
+
+Toasdsggle:OnChanged(function(vvv)
+    local Hidden = game.Workspace.Hidden
+
+    for _, v in pairs(Hidden:GetChildren()) do
+        if v.ClickDetector then
+            for _, highlight in ipairs(v:GetChildren()) do
+                if highlight:IsA("Highlight") then
+                    highlight:Destroy()
+                end
+            end
+        end
+    end
+
+    if vvv then
+        for _, v in pairs(Hidden:GetChildren()) do
+            if v.ClickDetector then
+                local highlight = Instance.new("Highlight")
+                highlight.Parent = v
+            end
+        end
+    end
+end)
+
 
 	Randomstuff:AddButton({
 	    Title = "Get outside items",
@@ -668,7 +690,51 @@ end)
 	        end
 	        wait(0.0000000001)
 	    end
-	end)
+end)
+
+	local asdasdasdasdasd = Money:AddToggle("Auto Farm", {Title = "Spin Wave Enemys", Default = false })
+
+	asdasdasdasdasd:OnChanged(function(v)        
+local speed = 50	 -- Adjust the speed as needed
+
+-- Function to rotate a part
+local function rotatePart(part)
+    while v and part do
+        part.CFrame = part.CFrame * CFrame.Angles(0, math.rad(speed), 0) -- Rotate the part
+        task.wait(0.1) -- Adjust the wait time to control the speed
+    end
+end
+	
+	while v do
+		for i,v in pairs(game.Workspace.BadGuysFront:GetChildren()) do
+			if v:IsA("Model") and v.HumanoidRootPart then
+				rotatePart(v.HumanoidRootPart)
+			end
+		end
+	end
+end)
+
+	local asdasdasdasaadasd = Money:AddToggle("Auto Farm", {Title = "Spin Fighting Arena Enemys", Default = false })
+
+	asdasdasdasaadasd:OnChanged(function(v)        
+local speed = 50	 -- Adjust the speed as needed
+
+-- Function to rotate a part
+local function rotatePart(part)
+    while v and part do
+        part.CFrame = part.CFrame * CFrame.Angles(0, math.rad(speed), 0) -- Rotate the part
+        task.wait(0.1) -- Adjust the wait time to control the speed
+    end
+end
+	
+	while v do
+		for i,v in pairs(game.Workspace.BadGuys:GetChildren()) do
+			if v:IsA("Model") and v.HumanoidRootPart then
+				rotatePart(v.HumanoidRootPart)
+			end
+		end
+	end
+end)
 
 	Money:AddButton({
 	    Title = "Go Fighting Arena",
@@ -696,7 +762,7 @@ end)
 	    Callback = function()
 			for i,v in pairs(workspace.BadGuysFront:GetChildren()) do
 				if v:IsA("Model") then
-					v:Destroy()
+					Remove(v)
 				end
 			end
 	    end,
@@ -851,7 +917,11 @@ Fluent:Notify({
 })
 		
 Events:WaitForChild("HitBadguy"):FireServer(workspace:FindFirstChild("BadGuyPizza", true), 64.8, 4)
-local PizzaBossM = workspace.PizzaBossAlec
+Events:WaitForChild("HitBadguy"):FireServer(workspace:FindFirstChild("BadGuyPizza", true), 64.8, 4)
+Events:WaitForChild("HitBadguy"):FireServer(workspace:FindFirstChild("BadGuyPizza", true), 64.8, 4)
+Events:WaitForChild("HitBadguy"):FireServer(workspace:FindFirstChild("BadGuyPizza", true), 64.8, 4)
+Events:WaitForChild("HitBadguy"):FireServer(workspace:FindFirstChild("BadGuyPizza", true), 64.8, 4)	
+		local PizzaBossM = workspace.PizzaBossAlec
 	for i,v in pairs(PizzaBossM:GetChildren()) do
 		if v:IsA("Model") and v.Name == "BadGuyPizza" then
 			player.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame + Vector3.new(3,0,0)
