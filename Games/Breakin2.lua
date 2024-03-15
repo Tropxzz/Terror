@@ -4,7 +4,22 @@
 	local Events = game:GetService("ReplicatedStorage"):WaitForChild("Events")
 	local player = game.Players.LocalPlayer
 	_G.FreeHealthenabled = false
-	local Window = Fluent:CreateWindow({
+
+local uis = game:GetService("UserInputService")
+
+local touchEnabled = uis.TouchEnabled
+local keyBoardEnabled = uis.KeyboardEnabled
+local ismobile = false
+if touchEnabled and not keyBoardEnabled and not uis.MouseEnabled then
+   ismobile = true
+elseif keyBoardEnabled and uis.MouseEnabled then
+   ismobile = false
+end
+
+local Window = nil
+
+if ismobile == true then
+	 Window = Fluent:CreateWindow({
 		Title = "Terror 1.0 - Break in 2",
 		SubTitle = "by Jimmy/Tropxz",
 		TabWidth = 160,
@@ -13,6 +28,17 @@
 		Theme = "Dark",
 		MinimizeKey = Enum.KeyCode.LeftControl -- Used when theres no MinimizeKeybind
 	})
+else
+	 Window = Fluent:CreateWindow({
+		Title = "Terror 1.0 - Break in 2",
+		SubTitle = "by Jimmy/Tropxz",
+		TabWidth = 160,
+		Size = UDim2.fromOffset(290, 230),
+		Acrylic = true, -- The blur may be detectable, setting this to false disables blur entirely
+		Theme = "Dark",
+		MinimizeKey = Enum.KeyCode.LeftControl -- Used when theres no MinimizeKeybind
+	})
+end
 
 	local Trolling = Window:AddTab({ Title = "Trolling", Icon = "angry" })
 	local Items = Window:AddTab({ Title = "Items", Icon = "hammer" })
@@ -97,7 +123,7 @@
 	            },
 	        }
 	    })
-	end
+end
 
 	Window:SelectTab(1)
 
