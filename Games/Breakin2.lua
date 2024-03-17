@@ -1,3 +1,4 @@
+
 local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
 	local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
 	local Dialog = loadstring(game:HttpGet("https://raw.githubusercontent.com/Tropxzz/Terror/main/Modules/TerrorDialog.lua", true))()
@@ -561,6 +562,63 @@ end)
 	    Callback = function()
 	        game.Workspace.Hails:Destroy()
 	    end,
+})
+
+
+function weapongetfr()
+  for i, v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.Assets.Note2.Note2.Note2:GetChildren()) do
+	            if v.Name:match("Circle") and v.Visible == true then
+	                local args = {
+	                    [1] = 3,
+	                    [2] = tostring(v.Name:gsub("Circle", "")),
+	                    [3] = "Weapons",
+	                    [4] = player.Name,
+	                    [6] = 0
+	                }
+
+	                game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("Vending"):FireServer(unpack(args))
+	            end
+	        end
+end
+
+	Randomstuff:AddButton({
+	    Title = "Click pete (Unlock pete before using)",
+	    Description = "For those lazy fellas.",
+	Callback = function()
+		xpcall(function()
+		local oldpos = player.Character.HumanoidRootPart.CFrame
+		local hum = player.Character.HumanoidRootPart -- im getting annoyed
+		local char = player.Character -- why do i put these in the worst pos fr
+		local itemtable = {"Crowbar2", "Crowbar3", "Broom", "PitchFork", "Wrench", "Hammer", "Bat"}
+		
+		for i,v in pairs(char:GetChildren()) do
+			for _, t in pairs(player.Backpack:GetChildren()) do
+				for i,a in pairs(itemtable) do
+					if v.Name == a then
+						if workspace.UnclePete then
+							local uncle = workspace.UnclePete
+							hum.CFrame = uncle.HumanoidRootPart.CFrame
+							fireclickdetector(uncle.ClickDetector)
+							hum.CFrame = oldpos
+						
+						end
+					elseif t.Name == a then
+							if workspace.UnclePete then
+							local uncle = workspace.UnclePete
+							hum.CFrame = uncle.HumanoidRootPart.CFrame
+							fireclickdetector(uncle.ClickDetector)
+							hum.CFrame = oldpos
+						end
+					else
+						weapongetfr()
+					end
+				end	
+			end
+			end
+			end, function(error_code)
+print("Terror Debugger: "..error_code)
+end)
+	    end,
 	})
 
 	Randomstuff:AddButton({
@@ -649,7 +707,25 @@ end)
 	    Callback = function(Value)
 	        player.Character.Humanoid.WalkSpeed = Value
 	    end
-	})
+})
+
+
+	local chingchongez = Plrr:AddToggle("God mode", {Title = "Inf health 🔥 IDEA i said IDEA by headlined", Default = false })
+
+	chingchongez:OnChanged(function(v)        
+while v do
+
+GiveItem("Pizza")
+
+local args = {
+    [1] = 25,
+    [2] = "Pizza"
+}
+
+		game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("Energy"):FireServer(unpack(args))
+		task.wait(0.1)
+end
+end)
 
 	-- money
 
@@ -1063,4 +1139,4 @@ Events:WaitForChild("HitBadguy"):FireServer(workspace:FindFirstChild("BadGuyPizz
 	InterfaceManager:SetLibrary(Fluent)
 InterfaceManager:BuildInterfaceSection(Settings)
 
-Dialog.yellow("The Script Terror has loaded")
+	Dialog.yellow("The Script Terror has loaded")
