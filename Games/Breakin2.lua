@@ -1,38 +1,8 @@
-xpcall(function()
-
-
 local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
 	local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
 	local Dialog = loadstring(game:HttpGet("https://raw.githubusercontent.com/Tropxzz/Terror/main/Modules/TerrorDialog.lua", true))()
 	local Events = game:GetService("ReplicatedStorage"):WaitForChild("Events")
 local player = game.Players.LocalPlayer
-
-
--- file system for the kicking whitelist thing u can disable in settings 🤑 and u get edit also 🤑
-
-local tokick = {}
-local isenabled = false
-
-if (isfolder("Terror")) then
-	if isfile("Terror//Whitelisted.txt") and isfile("Terror//EnabledorDisabled.txt") then
-		table.insert(tokick, readfile("Terror//Whitelisted.txt"))
-		if readfile("Terror//EnabledorDisabled.txt") == "True" then
-			isenabled = true
-		elseif readfile("Terror//EnabledorDisabled.txt") == false then
-			isenabled = false
-		end
-		for i,v in pairs(tokick) do
-			print(tostring(v), tostring(isenabled))
-		end
-    end
-else
-	makefolder("Terror")
-	print("Made Folder")
-	writefile("Terror//Whitelisted.txt", player.Name)
-		print("Made Whitelist")
-	writefile("Terror//EnabledorDisabled.txt", "False") 
-	print("Made Toggle ")
-end
 
 	_G.FreeHealthenabled = false
 
@@ -1093,77 +1063,4 @@ Events:WaitForChild("HitBadguy"):FireServer(workspace:FindFirstChild("BadGuyPizz
 	InterfaceManager:SetLibrary(Fluent)
 InterfaceManager:BuildInterfaceSection(Settings)
 
-    Settings:AddButton({
-        Title = "Kicking system",
-        Description = "Say ur playing with ur dear dear friend in a solo or in a general round and people are in there kick em with this!",
-        Callback = function() end })
-
- 	local sadajsdlkjallalala = Settings:AddToggle("MyToggle", {Title = "Enable it", Default = false })
-
-if readfile("Terror//EnabledorDisabled.txt") == "True" then
-	sadajsdlkjallalala:SetValue(true)
-else
-	sadajsdlkjallalala:SetValue(false)
-end
-
-sadajsdlkjallalala:OnChanged(function(v)
-	delfile("Terror//EnabledorDisabled.txt")
-		writefile("Terror//EnabledorDisabled.txt", tostring(v))
-		local function shouldKickPlayer(playerName)
-    for _, name in ipairs(tokick) do
-        if name == playerName  then
-					return false -- Player's name is in the file, do not kick
-				else
-					return true -- Player's name is not in the file, kick
-        end
-			end
-end
-		
-
-	 while v == true do
-        for _, player in pairs(game.Players:GetPlayers()) do
-            if shouldKickPlayer(player.Name) then
-                Remove(player)
-               end
-			end
-			wait(.1)
-		end
-	end)
-
-    Settings:AddButton({
-        Title = "ReWrite KickWhitelist",
-        Description = "Recreating",
-        Callback = function()
-               Fluent:Notify({
-        Title = "You just recreated ur whitelist",
-        Content = "Congrats now add the users u want and if u do a accidento press this again 🎉",
-        Duration = 5
-		})
-			delfile("Terror//Whitelisted.txt")
-			print("Deleted")
-			writefile("Terror//Whitelisted.txt", player.Name)
-			print("Written")
-        end
-})
-	
-	
-Settings:AddInput("Input", {
-        Title = "WhitelistUser",
-        Default = "",
-        Placeholder = "Whitelist the person u dont want to get kicked",
-        Numeric = false, -- Only allows numbers
-        Finished = false, -- Only calls callback when you press enter
-        Callback = function(Value)
-		table.insert(tokick, Value)
-		appendfile("Terror//Whitelisted.txt", "\n"..Value)
-		print(Value)
-        end
-})
-
-
-
 Dialog.yellow("The Script Terror has loaded")
-
-end, function(err)
-    warn("Terror 🎁🎉🤑: " .. err)
-end)
