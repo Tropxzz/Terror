@@ -12,9 +12,8 @@ local Window = Fluent:CreateWindow({
 -- gahhh why am i making it so organized 
 
 local Lobby = Window:AddTab({ Title = "Lobby", Icon = "egg" })
-
+Window:SelectTab(1)
 -- Lobby
-
 Lobby:AddParagraph({
     Title = "Section 1",
     Content = "This section contains Role Exploits"
@@ -48,6 +47,22 @@ Lobby:AddButton({
     Title = "SoloGame",
     Description = "teleports u ingame with no players",
     Callback = function()
-        game["Teleport Service"]:Teleport(13864667823, player)
+        game["Teleport Service"]:Teleport(13864667823, game.Players.LocalPlayer)
+    end
+})
+
+Lobby:AddButton({
+    Title = "Go into truck one",
+    Description = "teleports u into truck one",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(87.4349976, 7.86999941, 108.889984, 8.10623169e-05, 1, 8.10623169e-05, -8.10623169e-05, -8.10623169e-05, 1, 1, -8.10623169e-05, 8.10623169e-05)
+    end
+})
+
+Lobby:AddButton({
+    Title = "Go into truck two",
+    Description = "teleports u into truck two",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(87.4349976, 7.86999941, 147.389984, 8.10623169e-05, 1, 8.10623169e-05, -8.10623169e-05, -8.10623169e-05, 1, 1, -8.10623169e-05, 8.10623169e-05)
     end
 })
