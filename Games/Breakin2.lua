@@ -25,6 +25,7 @@ local player = game.Players.LocalPlayer
 	local Plrr = Window:AddTab({ Title = "Player", Icon = "user" })
 	local Ending = Window:AddTab({ Title = "Ending", Icon = "key" })
 	local Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
+	local CS = game:GetService("CollectionService")
 
 	local function GiveItem(Item)
 	    if Item == "Armor" then
@@ -130,7 +131,46 @@ end
 			game:GetService("RunService").Stepped:Wait()
 		end
 	    end,
-	})
+})
+
+
+    local Toggle = Buffs:AddToggle("Click to destroy", {Title = "Click to destroy 🎁", Default = false })
+	
+    Toggle:OnChanged(function()
+	local Mouse = player:GetMouse()
+	
+	while Toggle.Value == true do
+		local highlight = Instance.new("Highlight")
+highlight.FillTransparency = 1
+highlight.OutlineColor = Color3.fromRGB(0, 255, 0)
+highlight.Parent = game.Workspace
+
+local oldMouseTarget
+
+game:GetService("RunService").RenderStepped:Connect(function()
+    local currentMouseTarget = game:GetService("Players").LocalPlayer:GetMouse().Target
+    if currentMouseTarget and currentMouseTarget:IsA("BasePart") then
+        if oldMouseTarget ~= currentMouseTarget then
+            oldMouseTarget = currentMouseTarget
+            highlight.Parent = currentMouseTarget
+				end
+				
+				else
+		oldMouseTarget = nil
+        highlight.Parent = nil
+    	task.wait(0.000000001)
+
+    end
+end)
+
+game:GetService("UserInputService").InputEnded:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+        highlight.Parent = nil
+    end
+end)
+		end
+	end)
+
 
 	Buffs:AddButton({
 	    Title = "+1 Strength",
