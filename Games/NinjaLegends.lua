@@ -19,8 +19,49 @@ local S1tats = Window:AddTab({ Title = "Stats", Icon = "bar-chart-4" })
 local Chests = Window:AddTab({ Title = "Chests", Icon = "package" })
 local Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
 local player = game.Players.LocalPlayer
+local char = player.Character
+local hrp = char.HumanoidRootPart	
 local islandUnlockPoints = workspace.islandUnlockParts
 local islandparts
+
+	local function notify(head, content)
+	    Window:Dialog({
+	        Title = head,
+	        Content = content,
+	        Buttons = {
+	            {
+	                Title = "Okay",
+	                Callback = function()
+	                    print("Confirmed")
+	                end,
+	            }
+	        }
+	    })
+	end
+
+	local air = "hi"
+
+	local function Confirmation(head, content, cb)
+	    Window:Dialog({
+	        Title = head,
+	        Content = content,
+	        Buttons = {
+	            {
+	                Title = "Okay",
+	                Callback = cb
+	            },
+	            {
+	                Title = "No",
+	                Callback = function()
+	                    return air
+	                end,
+	            },
+	        }
+	    })
+end
+
+	Window:SelectTab(1)
+
 
 
 -- Islands
@@ -136,6 +177,22 @@ wait(0.00001)
     end
 end)
 -- stats
+
+    S1tats:AddButton({
+        Title = "Collect all chi",
+        Description = "chinese black white thing with a circle i think",
+        Callback = function()
+		notify("Collecting", "This will take a few moments.")
+		
+		for i,v in pairs(workspace.spawnedCoins.Valley:GetChildren()) do
+			if v.Name == "Chi" or v.Name == "Blue Chi Crate" or v.Name == "Pink Chi Crate" or v.Name == "Chi Crate" then
+					hrp.CFrame = v.CFrame
+			end
+		end
+	 end
+    })
+
+
 local AFS = S1tats:AddToggle("MyToggle", {Title = "AutoFarm Click", Default = false })
 
 AFS:OnChanged(function()
