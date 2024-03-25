@@ -178,20 +178,34 @@ wait(0.00001)
 end)
 -- stats
 
-    S1tats:AddButton({
-        Title = "Collect all chi",
-        Description = "chinese black white thing with a circle i think",
-        Callback = function()
-		notify("Collecting", "This will take a few moments.")
-		
-		for i,v in pairs(workspace.spawnedCoins.Valley:GetChildren()) do
-			if v.Name == "Chi" or v.Name == "Blue Chi Crate" or v.Name == "Pink Chi Crate" or v.Name == "Chi Crate" then
-					hrp.CFrame = v.CFrame
-			end
-		end
-	 end
-    })
+S1tats:AddButton({
+    Title = "Collect all chi",
+    Description = "Chinese black white thing with a circle, I think",
+    Callback = function()
+        notify("Collecting", "This will take a few moments.")
 
+        local names = {"Blue Chi Crate", "Pink Chi Crate", "Chi Crate"}
+		local old_cframe = hrp.CFrame
+        pcall(function()
+            repeat
+                local found = false  -- Flag to check if any names are found
+                for _, t in pairs(names) do
+                    for _, v in pairs(workspace.spawnedCoins.Valley:GetChildren()) do
+                        if v.Name == t then
+                            hrp.CFrame = v.CFrame
+                            found = true  -- Set flag to true if a name is found
+                            break  -- Exit the inner loop
+                        end
+                    end
+                    if found then break end  -- Exit the outer loop if a name is found
+                    task.wait(0.1) -- Wait for a short period before checking again
+				end
+				wait(0.0000000000000000001)
+			until not found  -- Repeat until no more names are found
+			hrp.CFrame = old_cframe
+		end)
+    end
+})
 
 local AFS = S1tats:AddToggle("MyToggle", {Title = "AutoFarm Click", Default = false })
 
