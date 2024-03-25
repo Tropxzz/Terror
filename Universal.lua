@@ -32,6 +32,20 @@ local vars = {}
 				Combat = Window:AddTab	({ Title = "Combat", Icon = "swords" })
 				Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
 
+	if not isfolder("Terror") then
+	    makefolder("Terror")
+	end
+	if not isfile("Terror/Theme.txt") then
+	    writefile("Terror/Theme.txt", "")
+	end
+	if isfolder("Terror") and isfile("Terror/Theme.txt") then
+	    if readfile("Terror/Theme.txt") == "" then
+	        Fluent:SetTheme("Dark")
+	    else
+	                Fluent:SetTheme(tostring(readfile("Terror/Theme.txt")))
+	    end
+	end
+
 
 Window:SelectTab(1)
 
@@ -245,9 +259,19 @@ end
 		end
 end)
 
--- interface settings
-			InterfaceManager:SetLibrary(Fluent)
-			InterfaceManager:BuildInterfaceSection(Settings)
+	local asdasdasdsadasdasdasdasdasd = Settings:AddDropdown("Dropdown", {
+	    Title = "Choose your theme",
+	    Values = {"Dark","Darker","Light","Aqua", "Amethyst", "Rose"},
+	    Multi = false,
+	    Default = "Choose one",
+	})
+	asdasdasdsadasdasdasdasdasd:OnChanged(function(Value)
+	    if not justloaded then
+	        Fluent:SetTheme(Value)
+	        delfile("Terror/Theme.txt")
+	        writefile("Terror/Theme.txt", tostring(Value))
+	    end
+end)\
 
 
 		-- put code above this not under 👑😭🙏 
