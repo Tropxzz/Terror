@@ -1,4 +1,6 @@
 local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
+
+
 local Window = Fluent:CreateWindow({
 	Title = "Terror 1.0 - Break in 2 Lobby",
 	SubTitle = "by Jimmy/Tropxz",
@@ -9,9 +11,24 @@ local Window = Fluent:CreateWindow({
 	MinimizeKey = Enum.KeyCode.LeftControl -- Used when theres no MinimizeKeybind
 })
 
+	if not isfolder("Terror") then
+	    makefolder("Terror")
+	end
+	if not isfile("Terror/Theme.txt") then
+	    writefile("Terror/Theme.txt", "")
+	end
+	if isfolder("Terror") and isfile("Terror/Theme.txt") then
+	    if readfile("Terror/Theme.txt") == "" then
+	        Fluent:SetTheme("Dark")
+	    else
+	                Fluent:SetTheme(tostring(readfile("Terror/Theme.txt")))
+	    end
+	end
+
 -- gahhh why am i making it so organized 
 
 local Lobby = Window:AddTab({ Title = "Lobby", Icon = "egg" })
+local Settings = window:Addtab({Title = "Settings", Icon = "settings"})
 Window:SelectTab(1)
 -- Lobby
 Lobby:AddParagraph({
@@ -66,3 +83,17 @@ Lobby:AddButton({
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(87.4349976, 7.86999941, 147.389984, 8.10623169e-05, 1, 8.10623169e-05, -8.10623169e-05, -8.10623169e-05, 1, 1, -8.10623169e-05, 8.10623169e-05)
     end
 })
+
+	local asdasdasdsadasdasdasdasdasd = Settings:AddDropdown("Dropdown", {
+	    Title = "Choose your theme",
+	    Values = {"Dark","Darker","Light","Aqua", "Amethyst", "Rose"},
+	    Multi = false,
+	    Default = "Choose one",
+	})
+	asdasdasdsadasdasdasdasdasd:OnChanged(function(Value)
+	    if not justloaded then
+	        Fluent:SetTheme(Value)
+	        delfile("Terror/Theme.txt")
+	        writefile("Terror/Theme.txt", tostring(Value))
+	    end
+end)
