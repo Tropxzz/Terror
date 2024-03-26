@@ -1,5 +1,5 @@
 local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
-
+justloaded = true
 
 local Window = Fluent:CreateWindow({
 	Title = "Terror 1.0 - Break in 2 Lobby",
@@ -28,7 +28,7 @@ local Window = Fluent:CreateWindow({
 -- gahhh why am i making it so organized 
 
 local Lobby = Window:AddTab({ Title = "Lobby", Icon = "egg" })
-local Settings = window:Addtab({Title = "Settings", Icon = "settings"})
+local Settings = Window:AddTab({Title = "Settings", Icon = "settings"})
 Window:SelectTab(1)
 -- Lobby
 Lobby:AddParagraph({
@@ -84,7 +84,7 @@ Lobby:AddButton({
     end
 })
 
-	local asdasdasdsadasdasdasdasdasd = Settings:AddDropdown("Dropdown", {
+local asdasdasdsadasdasdasdasdasd = Settings:AddDropdown("Dropdown", {
 	    Title = "Choose your theme",
 	    Values = {"Dark","Darker","Light","Aqua", "Amethyst", "Rose"},
 	    Multi = false,
@@ -97,3 +97,5 @@ Lobby:AddButton({
 	        writefile("Terror/Theme.txt", tostring(Value))
 	    end
 end)
+
+justloaded = false
