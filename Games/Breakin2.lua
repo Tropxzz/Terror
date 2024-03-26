@@ -18,19 +18,21 @@ local player = game.Players.LocalPlayer
 		MinimizeKey = Enum.KeyCode.LeftControl -- Used when theres no MinimizeKeybind
 })
 
-	if not isfolder("Terror") then
-	    makefolder("Terror")
-	end
-	if not isfile("Terror/Theme.txt") then
-	    writefile("Terror/Theme.txt", "")
-	end
-	if isfolder("Terror") and isfile("Terror/Theme.txt") then
-	    if readfile("Terror/Theme.txt") == "" then
-	        Fluent:SetTheme("Dark")
-	    else
-	                Fluent:SetTheme(tostring(readfile("Terror/Theme.txt")))
-	    end
-	end
+if not isfolder("Terror") then
+    makefolder("Terror")
+end
+if not isfile("Terror/Theme.txt") then
+    writefile("Terror/Theme.txt", "")
+end
+if isfolder("Terror") and isfile("Terror/Theme.txt") then
+    local theme = readfile("Terror/Theme.txt")
+    if theme == "" then
+        Fluent:SetTheme("Dark")
+    else
+        Fluent:SetTheme(theme)
+    end
+end
+
 
 	local Trolling = Window:AddTab({ Title = "Trolling", Icon = "angry" })
 	local Items = Window:AddTab({ Title = "Items", Icon = "hammer" })
@@ -1236,18 +1238,19 @@ Events:WaitForChild("HitBadguy"):FireServer(workspace:FindFirstChild("BadGuyPizz
 	})
 
 	-- settings
-	local asdasdasdsadasdasdasdasdasd = Settings:AddDropdown("Dropdown", {
-	    Title = "Choose your theme",
-	    Values = {"Dark","Darker","Light","Aqua", "Amethyst", "Rose"},
-	    Multi = false,
-	    Default = "Choose one",
-	})
-	asdasdasdsadasdasdasdasdasd:OnChanged(function(Value)
-	    if not justloaded then
-	        Fluent:SetTheme(Value)
-	        delfile("Terror/Theme.txt")
-	        writefile("Terror/Theme.txt", tostring(Value))
-	    end
+local themeDropdown = Settings:AddDropdown("Dropdown", {
+    Title = "Choose your theme",
+    Values = {"Dark","Darker","Light","Aqua", "Amethyst", "Rose"},
+    Multi = false,
+    Default = "Choose one",
+})
+
+themeDropdown:OnChanged(function(Value)
+    if not justloaded then
+        Fluent:SetTheme(Value)
+        delfile("Terror/Theme.txt")
+        writefile("Terror/Theme.txt", tostring(Value))
+    end
 end)
 
 justloaded = false
