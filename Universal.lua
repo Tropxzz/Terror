@@ -1,4 +1,4 @@
-			
+			justloaded = true
 		-- ui varibles
 			local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
 			local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
@@ -271,7 +271,7 @@ end)
 	        delfile("Terror/Theme.txt")
 	        writefile("Terror/Theme.txt", tostring(Value))
 	    end
-end)\
+end)
 
 
 		-- put code above this not under 👑😭🙏 
@@ -280,4 +280,4 @@ end)\
 
 			Dialog.yellow("The Script Terror has loaded")
 		
-		
+		justloaded = false
