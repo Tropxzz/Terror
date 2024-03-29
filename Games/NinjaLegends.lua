@@ -1,9 +1,11 @@
 		local loaded
 
-		local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
-		local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
-		local justloaded = true
-		local Dialog = loadstring(game:HttpGet("https://raw.githubusercontent.com/Tropxzz/Terror/main/Modules/TerrorDialog.lua", true))()
+local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
+local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
+local justloaded = true
+local Dialog = loadstring(game:HttpGet("https://raw.githubusercontent.com/Tropxzz/Terror/main/Modules/TerrorDialog.lua", true))()
+local rs = game:GetService("RunService")
+local pl = game.Players
 
 		local Window = Fluent:CreateWindow({
 				Title = "Terror 1.0 - Ninja Legends",
@@ -252,32 +254,17 @@
 		    end
 		end)
 
-	local TweenService = game:GetService("TweenService")
+	    local CoolEffect = S1tats:AddToggle("Cool effect", {Title = "Cool effect", Default = false })
 
-	local Autohoop = S1tats:AddToggle("MyToggle", {Title = "Auto claim hoop ⭕⚽", Default = false })
-
-	function after(secs, func)
-		wait(secs)
-		func()
-	end
-
-	Autohoop:OnChanged(function()
-	        for i, hoop in	 pairs(workspace.Hoops:GetChildren()) do
-	 		 while Autohoop.Value  == true do
-				if hoop.Transparency ~=  1 then
-					 local targetCFrame = hoop.CFrame
-				hrp.CFrame = targetCFrame
-				hoop.Transparency = 1
-				        wait(1) -- Adjust the wait time as needed
-				after(62, function()
-					hoop.Transparency = 0
-				end)
-	        end
-				end
-	    end
-	end)
-
-
+		CoolEffect:OnChanged(function()
+		    while CoolEffect.Value == true do
+    for _,v in ipairs( workspace.spawnedCoins.Valley:GetChildren()) do
+			v.CFrame = hrp.CFrame
+			task.wait()
+		end
+		
+		    end
+		end)
 
 		    local Autosell = S1tats:AddToggle("MyToggle", {Title = "AutoSell", Default = false })
 
