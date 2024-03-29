@@ -152,6 +152,7 @@ end
 })
 
 
+--[[
     local Toggle = Buffs:AddToggle("Click to destroy", {Title = "Click to destroy 🎁", Default = false })
 	
     Toggle:OnChanged(function()
@@ -188,6 +189,9 @@ game:GetService("UserInputService").InputEnded:Connect(function(input)
 end)
 		end
 	end)
+]]
+
+
 
 
 	Buffs:AddButton({
@@ -1063,7 +1067,6 @@ end)
 	end)
 
 
-
 	Money:AddButton({
 	    Title = "Get Best tool",
 	    Description = "Gets best tool",
@@ -1123,7 +1126,51 @@ Events:WaitForChild("HitBadguy"):FireServer(workspace:FindFirstChild("BadGuyPizz
 	    game["Run Service"].Stepped:Wait()
 		end
 	end,
-	})
+})
+
+local alr = nil
+local jjjjj = false
+
+local ka = Money:AddToggle("ajhsadgsd", {
+    Title = "Kill Aura for Base Enemies",
+    Description = "Slaughter every enemy around you in a small radius.",
+    Default = false
+})
+
+ka:OnChanged(function(value)
+    jjjjj = value
+
+    if (value) then
+        coroutine.wrap(function()
+            xpcall(function()
+                while (jjjjj) do
+                    for i = 1, 35 do
+                        for _,v in ipairs(workspace:FindFirstChild("BadGuysFront"):GetChildren()) do
+                            for i = 1,5 do
+                                Events:WaitForChild("HitBadguy"):FireServer(v, 64.8, 4)
+                                game:GetService("RunService").Stepped:Wait()
+                            end
+                        end
+
+                        for _,v in ipairs(workspace:FindFirstChild("BadGuys"):GetChildren()) do
+                            for i = 1,5 do
+                                Events:WaitForChild("HitBadguy"):FireServer(v, 64.8, 4)
+                                  game:GetService("RunService").Stepped:Wait()
+                            end
+                        end
+
+                          game:GetService("RunService").Stepped:Wait()
+                    end
+                    game:GetService("RunService").Stepped:Wait()
+                end
+            end, function(err)
+                jjjjj = false
+                ka:SetValue(false)
+				error("ERROR ERROR idk: "..tostring(err)) 
+			end)
+        end)()
+    end
+end)
 
 	-- ending
 	-- code under me is made by headlined/suno
