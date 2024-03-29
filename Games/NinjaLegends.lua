@@ -293,7 +293,7 @@ end)
 		    Title = "10x coins",
 		    Description = "i think it works aoaoao",
 		    Callback = function()
-		game:GetService("Players").jopzllwastaken.x10CoinsTime.Value = math.huge
+		player.x10CoinsTime.Value = math.huge
 		    end
 		})
 
