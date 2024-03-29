@@ -35,7 +35,9 @@ local pl = game.Players
 		local Islands = Window:AddTab({ Title = "Islands", Icon = "landmark" })
 		local Items = Window:AddTab({ Title = "Items", Icon = "hammer" })
 		local S1tats = Window:AddTab({ Title = "Stats", Icon = "bar-chart-4" })
+		local FT = Window:AddTab({ Title = "Fun things", Icon = "package" })
 		local Chests = Window:AddTab({ Title = "Chests", Icon = "package" })
+ 
 		local Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
 		local player = game.Players.LocalPlayer
 		local char = player.Character
@@ -275,7 +277,41 @@ local pl = game.Players
 		        game:GetService("Workspace").sellAreaCircles.sellAreaCircle16.circleInner.CFrame = CFrame.new(0,0,0)
 		        wait(0.0000000000000000000000000000000000000000000000000000001)
 		    end
-		end)
+end)
+
+			S1tats:AddButton({
+		    Title = "Inf jumps",
+		    Description = "Somehow works 💀",
+		    Callback = function()
+		player.multiJumpCount.Value = math.huge
+		    end
+})
+
+
+
+			S1tats:AddButton({
+		    Title = "10x coins",
+		    Description = "i think it works aoaoao",
+		    Callback = function()
+		game:GetService("Players").jopzllwastaken.x10CoinsTime.Value = math.huge
+		    end
+		})
+
+-- FT
+
+			FT:AddButton({
+		    Title = "Gound Slam",
+		    Description = "or gray fart",
+		    Callback = function()
+local args = {
+    [1] = "groundSlam"
+}
+
+game:GetService("Players").LocalPlayer:WaitForChild("ninjaEvent"):FireServer(unpack(args))
+		    end
+})
+
+
 
 		local asdasdasdsadasdasdasdasdasd = Settings:AddDropdown("Dropdown", {
 		    Title = "Choose your theme",
