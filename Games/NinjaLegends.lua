@@ -37,8 +37,9 @@ local pl = game.Players
 		local S1tats = Window:AddTab({ Title = "Stats", Icon = "bar-chart-4" })
 		local FT = Window:AddTab({ Title = "Fun things", Icon = "package" })
 		local Chests = Window:AddTab({ Title = "Chests", Icon = "package" })
- 
+ 		local lmfaogetrekted = Window:AddTab({ Title = "Using ninja legends aganist them", Icon = "package" })
 		local Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
+
 		local player = game.Players.LocalPlayer
 		local char = player.Character
 		local hrp = char.HumanoidRootPart	
@@ -256,7 +257,7 @@ local pl = game.Players
 		    end
 		end)
 
-	    local CoolEffect = S1tats:AddToggle("Cool effect", {Title = "Cool effect", Default = false })
+	    local CoolEffect = S1tats:AddToggle("Cool effect", {Title = "Cool effect (takes a minute to disable)", Default = false })
 
 		CoolEffect:OnChanged(function()
 		    while CoolEffect.Value == true do
@@ -287,9 +288,7 @@ end)
 		    end
 })
 
-
-
-			S1tats:AddButton({
+			lmfaogetrekted:AddButton({
 		    Title = "10x coins",
 		    Description = "i think it works aoaoao",
 		    Callback = function()
@@ -298,16 +297,31 @@ end)
 		})
 
 
-			S1tats:AddButton({
+			lmfaogetrekted:AddButton({
 		    Title = "10x chi",
 		    Description = "i think it works aoaoao",
 		    Callback = function()
 		player.x10ChiTime.Value = math.huge
 		    end
+})
+
+			lmfaogetrekted:AddButton({
+		    Title = "Game's personal Auto train",
+		    Description = "if they add a anticheat which i doubt (non toggable)",
+		    Callback = function()
+		player.autoTrainTime.Value = math.huge
+		    end
+})
+
+			lmfaogetrekted:AddButton({
+		    Title = "Game's personal Auto Sell",
+		    Description = "if they add a anticheat which i doubt (non toggable)",
+		    Callback = function()
+		player.autoSellTime.Value = math.huge
+		    end
 		})
 
 -- FT
-
 			FT:AddButton({
 		    Title = "Gound Slam",
 		    Description = "or gray fart",
