@@ -297,6 +297,15 @@ end)
 		    end
 		})
 
+
+			S1tats:AddButton({
+		    Title = "10x chi",
+		    Description = "i think it works aoaoao",
+		    Callback = function()
+		player.x10ChiTime.Value = math.huge
+		    end
+		})
+
 -- FT
 
 			FT:AddButton({
