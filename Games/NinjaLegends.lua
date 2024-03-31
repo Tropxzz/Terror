@@ -17,26 +17,27 @@ local pl = game.Players
 				MinimizeKey = Enum.KeyCode.LeftControl -- Used when theres no MinimizeKeybind
 		})
 
-		if not isfolder("Terror") then
-		    makefolder("Terror")
-		end
-		if not isfile("Terror/Theme.txt") then
-		    writefile("Terror/Theme.txt", "")
-		end
-		if isfolder("Terror") and isfile("Terror/Theme.txt") then
-		    if readfile("Terror/Theme.txt") == "" then
-		        Fluent:SetTheme("Dark")
-		    else
-		                Fluent:SetTheme(tostring(readfile("Terror/Theme.txt")))
+if not isfolder("Terror") then
+    makefolder("Terror")
+end
 
-		    end
-		end
+if not isfile("Terror/Theme.txt") then
+    writefile("Terror/Theme.txt", "")
+end
+
+if isfolder("Terror") and isfile("Terror/Theme.txt") then
+    if readfile("Terror/Theme.txt") == "" then
+        Fluent:SetTheme("Dark")
+    else
+        Fluent:SetTheme(tostring(readfile("Terror/Theme.txt")))
+	end 
+end
+
 
 		local Islands = Window:AddTab({ Title = "Islands", Icon = "landmark" })
 		local Items = Window:AddTab({ Title = "Items", Icon = "hammer" })
 		local S1tats = Window:AddTab({ Title = "Stats", Icon = "bar-chart-4" })
 		local FT = Window:AddTab({ Title = "Fun things", Icon = "package" })
-		local Chests = Window:AddTab({ Title = "Chests", Icon = "package" })
  		local lmfaogetrekted = Window:AddTab({ Title = "Using ninja legends aganist them", Icon = "package" })
 		local Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
 
@@ -237,7 +238,7 @@ local pl = game.Players
 		                }
 
 		                game:GetService("Players").LocalPlayer:WaitForChild("ninjaEvent"):FireServer(unpack(args))
-		                task.wait(0.000000000000000000000000000000000000000000000000000000000000000000000000000000001)
+		               rs.Stepped:Wait()
 		            end
 		        else
 		            for i,v in pairs(player.Backpack:GetChildren()) do
@@ -279,6 +280,41 @@ local pl = game.Players
 		        wait(0.0000000000000000000000000000000000000000000000000000001)
 		    end
 end)
+
+local KB = S1tats:AddToggle("MyToggle", {Title = "Kill Robot boss (try)", Default = false })
+
+KB:OnChanged(function()
+    local notificationSent = false  -- Flag to track if notification has been sent
+    
+    while KB.Value == true do
+        local robot_Boss = workspace.bossFolder.RobotBoss
+        
+        if robot_Boss then
+            local human = robot_Boss:FindFirstChild("HumanoidRootPart")
+            if human then
+                if not notificationSent then
+                    notify("Please equip your sword/katana/blade until boss is dead. 🐦")
+                    notificationSent = true  -- Set flag to true once notification is sent
+                end
+                local hrp = game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart")
+                hrp.CFrame = human.CFrame
+                local args = {
+                    [1] = "swingKatana"
+                }
+                game:GetService("Players").LocalPlayer:WaitForChild("ninjaEvent"):FireServer(unpack(args))
+            else
+                notify("Humanoid of the robot boss is not found")
+                break
+            end
+        else
+            notify("No Robot boss Model")
+            break
+        end
+        rs.Stepped:Wait()
+    end
+end)
+
+
 
 			S1tats:AddButton({
 		    Title = "Inf jumps",
